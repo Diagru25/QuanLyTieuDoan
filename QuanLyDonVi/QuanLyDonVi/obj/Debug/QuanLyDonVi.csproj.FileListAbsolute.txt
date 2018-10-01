@@ -107,3 +107,5 @@ c:\users\huygiang\documents\visual studio 2015\Projects\QuanLyDonVi\QuanLyDonVi\
 c:\users\huygiang\documents\visual studio 2015\Projects\QuanLyDonVi\QuanLyDonVi\obj\Debug\QuanLyDonVi.GUI.Uc_KetQuaHocTap.resources
 c:\users\huygiang\documents\visual studio 2015\Projects\QuanLyDonVi\QuanLyDonVi\obj\Debug\QuanLyDonVi.GUI.Uc_DaiDoi.resources
 c:\users\huygiang\documents\visual studio 2015\Projects\QuanLyDonVi\QuanLyDonVi\obj\Debug\QuanLyDonVi.GUI.Uc_TieuDoan.resources
+C:\Users\HuyGiang\Documents\GitHub\QuanLyTieuDoan\QuanLyDonVi\QuanLyDonVi\obj\Debug\QuanLyDonVi.exe
+C:\Users\HuyGiang\Documents\GitHub\QuanLyTieuDoan\QuanLyDonVi\QuanLyDonVi\obj\Debug\QuanLyDonVi.pdb
