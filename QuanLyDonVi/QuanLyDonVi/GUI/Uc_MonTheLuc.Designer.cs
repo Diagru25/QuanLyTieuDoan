@@ -33,6 +33,14 @@
             DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
             DevExpress.XtraLayout.RowDefinition rowDefinition4 = new DevExpress.XtraLayout.RowDefinition();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.txbGioi = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txbKha = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txbDat = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txbDonViTinh = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.btn_Thoat = new System.Windows.Forms.Button();
@@ -44,27 +52,19 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txbID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_HoTen = new System.Windows.Forms.TextBox();
+            this.txbTen = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.grcMonHoc = new DevExpress.XtraGrid.GridControl();
-            this.grvMonHoc = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dgrMonTheLuc = new DevExpress.XtraGrid.GridControl();
+            this.grvMonTheLuc = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -78,30 +78,102 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grcMonHoc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvMonHoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrMonTheLuc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvMonTheLuc)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.textBox5);
+            this.panelControl1.Controls.Add(this.txbGioi);
             this.panelControl1.Controls.Add(this.label6);
-            this.panelControl1.Controls.Add(this.textBox4);
+            this.panelControl1.Controls.Add(this.txbKha);
             this.panelControl1.Controls.Add(this.label5);
-            this.panelControl1.Controls.Add(this.textBox3);
+            this.panelControl1.Controls.Add(this.txbDat);
             this.panelControl1.Controls.Add(this.label4);
-            this.panelControl1.Controls.Add(this.textBox2);
+            this.panelControl1.Controls.Add(this.txbDonViTinh);
             this.panelControl1.Controls.Add(this.label3);
             this.panelControl1.Controls.Add(this.panelControl2);
-            this.panelControl1.Controls.Add(this.textBox1);
+            this.panelControl1.Controls.Add(this.txbID);
             this.panelControl1.Controls.Add(this.label2);
-            this.panelControl1.Controls.Add(this.txt_HoTen);
+            this.panelControl1.Controls.Add(this.txbTen);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelControl1.Location = new System.Drawing.Point(542, 0);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(325, 530);
             this.panelControl1.TabIndex = 0;
+            // 
+            // txbGioi
+            // 
+            this.txbGioi.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txbGioi.Location = new System.Drawing.Point(85, 297);
+            this.txbGioi.Name = "txbGioi";
+            this.txbGioi.Size = new System.Drawing.Size(225, 25);
+            this.txbGioi.TabIndex = 39;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.label6.Location = new System.Drawing.Point(6, 297);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(30, 18);
+            this.label6.TabIndex = 38;
+            this.label6.Text = "Giỏi";
+            // 
+            // txbKha
+            // 
+            this.txbKha.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txbKha.Location = new System.Drawing.Point(85, 249);
+            this.txbKha.Name = "txbKha";
+            this.txbKha.Size = new System.Drawing.Size(225, 25);
+            this.txbKha.TabIndex = 37;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.label5.Location = new System.Drawing.Point(6, 249);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 18);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "Khá";
+            // 
+            // txbDat
+            // 
+            this.txbDat.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txbDat.Location = new System.Drawing.Point(85, 200);
+            this.txbDat.Name = "txbDat";
+            this.txbDat.Size = new System.Drawing.Size(225, 25);
+            this.txbDat.TabIndex = 35;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.label4.Location = new System.Drawing.Point(6, 200);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 18);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "Đạt YC";
+            // 
+            // txbDonViTinh
+            // 
+            this.txbDonViTinh.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txbDonViTinh.Location = new System.Drawing.Point(85, 154);
+            this.txbDonViTinh.Name = "txbDonViTinh";
+            this.txbDonViTinh.Size = new System.Drawing.Size(225, 25);
+            this.txbDonViTinh.TabIndex = 33;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.label3.Location = new System.Drawing.Point(6, 154);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 18);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Đơn vị tính";
             // 
             // panelControl2
             // 
@@ -136,6 +208,7 @@
             this.btn_Thoat.TabIndex = 35;
             this.btn_Thoat.Text = "Thoát";
             this.btn_Thoat.UseVisualStyleBackColor = true;
+            this.btn_Thoat.Click += new System.EventHandler(this.btn_Thoat_Click);
             // 
             // btn_Them
             // 
@@ -145,6 +218,7 @@
             this.btn_Them.TabIndex = 32;
             this.btn_Them.Text = "Thêm";
             this.btn_Them.UseVisualStyleBackColor = true;
+            this.btn_Them.Click += new System.EventHandler(this.btn_Them_Click);
             // 
             // btn_Xoa
             // 
@@ -154,6 +228,7 @@
             this.btn_Xoa.TabIndex = 34;
             this.btn_Xoa.Text = "Xóa";
             this.btn_Xoa.UseVisualStyleBackColor = true;
+            this.btn_Xoa.Click += new System.EventHandler(this.btn_Xoa_Click);
             // 
             // btn_Sua
             // 
@@ -163,6 +238,7 @@
             this.btn_Sua.TabIndex = 33;
             this.btn_Sua.Text = "Sửa";
             this.btn_Sua.UseVisualStyleBackColor = true;
+            this.btn_Sua.Click += new System.EventHandler(this.btn_Sua_Click);
             // 
             // layoutControlGroup1
             // 
@@ -234,13 +310,14 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // textBox1
+            // txbID
             // 
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.textBox1.Location = new System.Drawing.Point(85, 66);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(225, 25);
-            this.textBox1.TabIndex = 30;
+            this.txbID.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txbID.Location = new System.Drawing.Point(85, 66);
+            this.txbID.Name = "txbID";
+            this.txbID.ReadOnly = true;
+            this.txbID.Size = new System.Drawing.Size(225, 25);
+            this.txbID.TabIndex = 30;
             // 
             // label2
             // 
@@ -252,13 +329,13 @@
             this.label2.TabIndex = 29;
             this.label2.Text = "ID";
             // 
-            // txt_HoTen
+            // txbTen
             // 
-            this.txt_HoTen.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txt_HoTen.Location = new System.Drawing.Point(85, 109);
-            this.txt_HoTen.Name = "txt_HoTen";
-            this.txt_HoTen.Size = new System.Drawing.Size(225, 25);
-            this.txt_HoTen.TabIndex = 27;
+            this.txbTen.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txbTen.Location = new System.Drawing.Point(85, 109);
+            this.txbTen.Name = "txbTen";
+            this.txbTen.Size = new System.Drawing.Size(225, 25);
+            this.txbTen.TabIndex = 27;
             // 
             // label1
             // 
@@ -272,49 +349,51 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.grcMonHoc);
+            this.groupControl1.Controls.Add(this.dgrMonTheLuc);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(542, 530);
             this.groupControl1.TabIndex = 1;
-            this.groupControl1.Text = "Danh sách";
+            this.groupControl1.Text = "Danh sách chuẩn thể lực";
             // 
-            // grcMonHoc
+            // dgrMonTheLuc
             // 
-            this.grcMonHoc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grcMonHoc.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.grcMonHoc.Location = new System.Drawing.Point(2, 20);
-            this.grcMonHoc.MainView = this.grvMonHoc;
-            this.grcMonHoc.Name = "grcMonHoc";
-            this.grcMonHoc.Size = new System.Drawing.Size(538, 508);
-            this.grcMonHoc.TabIndex = 3;
-            this.grcMonHoc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grvMonHoc});
+            this.dgrMonTheLuc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgrMonTheLuc.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.dgrMonTheLuc.Location = new System.Drawing.Point(2, 20);
+            this.dgrMonTheLuc.MainView = this.grvMonTheLuc;
+            this.dgrMonTheLuc.Name = "dgrMonTheLuc";
+            this.dgrMonTheLuc.Size = new System.Drawing.Size(538, 508);
+            this.dgrMonTheLuc.TabIndex = 3;
+            this.dgrMonTheLuc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvMonTheLuc});
             // 
-            // grvMonHoc
+            // grvMonTheLuc
             // 
-            this.grvMonHoc.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.grvMonHoc.Appearance.HeaderPanel.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            this.grvMonHoc.Appearance.HeaderPanel.Options.UseFont = true;
-            this.grvMonHoc.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.grvMonHoc.Appearance.Row.Options.UseFont = true;
-            this.grvMonHoc.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grvMonTheLuc.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.grvMonTheLuc.Appearance.HeaderPanel.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            this.grvMonTheLuc.Appearance.HeaderPanel.Options.UseFont = true;
+            this.grvMonTheLuc.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.grvMonTheLuc.Appearance.Row.Options.UseFont = true;
+            this.grvMonTheLuc.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn4,
             this.gridColumn6,
             this.gridColumn5,
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3});
-            this.grvMonHoc.GridControl = this.grcMonHoc;
-            this.grvMonHoc.Name = "grvMonHoc";
-            this.grvMonHoc.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
-            this.grvMonHoc.OptionsFind.AlwaysVisible = true;
-            this.grvMonHoc.OptionsView.ShowGroupPanel = false;
+            this.grvMonTheLuc.GridControl = this.dgrMonTheLuc;
+            this.grvMonTheLuc.Name = "grvMonTheLuc";
+            this.grvMonTheLuc.OptionsBehavior.ReadOnly = true;
+            this.grvMonTheLuc.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
+            this.grvMonTheLuc.OptionsFind.AlwaysVisible = true;
+            this.grvMonTheLuc.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "ID";
+            this.gridColumn4.FieldName = "ID";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 0;
@@ -323,6 +402,7 @@
             // gridColumn6
             // 
             this.gridColumn6.Caption = "Tên";
+            this.gridColumn6.FieldName = "Ten";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 1;
@@ -331,6 +411,7 @@
             // gridColumn5
             // 
             this.gridColumn5.Caption = "ĐVT";
+            this.gridColumn5.FieldName = "DonViTinh";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 2;
@@ -339,6 +420,7 @@
             // gridColumn1
             // 
             this.gridColumn1.Caption = "Đạt yêu cầu";
+            this.gridColumn1.FieldName = "Dat";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 3;
@@ -347,6 +429,7 @@
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Khá";
+            this.gridColumn2.FieldName = "Kha";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 4;
@@ -355,82 +438,11 @@
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Giỏi";
+            this.gridColumn3.FieldName = "Gioi";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 5;
             this.gridColumn3.Width = 73;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.textBox2.Location = new System.Drawing.Point(85, 154);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(225, 25);
-            this.textBox2.TabIndex = 33;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.label3.Location = new System.Drawing.Point(6, 154);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 18);
-            this.label3.TabIndex = 32;
-            this.label3.Text = "Đơn vị tính";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.textBox3.Location = new System.Drawing.Point(85, 200);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(225, 25);
-            this.textBox3.TabIndex = 35;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.label4.Location = new System.Drawing.Point(6, 200);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 18);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "Đạt YC";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.textBox4.Location = new System.Drawing.Point(85, 249);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(225, 25);
-            this.textBox4.TabIndex = 37;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.label5.Location = new System.Drawing.Point(6, 249);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 18);
-            this.label5.TabIndex = 36;
-            this.label5.Text = "Khá";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.textBox5.Location = new System.Drawing.Point(85, 297);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(225, 25);
-            this.textBox5.TabIndex = 39;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.label6.Location = new System.Drawing.Point(6, 297);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 18);
-            this.label6.TabIndex = 38;
-            this.label6.Text = "Giỏi";
             // 
             // Uc_MonTheLuc
             // 
@@ -454,8 +466,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grcMonHoc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvMonHoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrMonTheLuc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvMonTheLuc)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -464,14 +476,14 @@
 
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraGrid.GridControl grcMonHoc;
-        private DevExpress.XtraGrid.Views.Grid.GridView grvMonHoc;
+        private DevExpress.XtraGrid.GridControl dgrMonTheLuc;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvMonTheLuc;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbID;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt_HoTen;
+        private System.Windows.Forms.TextBox txbTen;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
@@ -487,13 +499,13 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txbGioi;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txbKha;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txbDat;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txbDonViTinh;
         private System.Windows.Forms.Label label3;
     }
 }
