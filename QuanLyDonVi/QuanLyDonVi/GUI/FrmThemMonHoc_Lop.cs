@@ -15,8 +15,9 @@ namespace QuanLyDonVi.GUI
     public partial class FrmThemMonHoc_Lop : Form
     {
         long id = 0;
-        List<MonHoc> li1 = new MonHocDAO().GetAll();
-        List<MonHoc> li2 = null;
+        //List<MonHoc> li1 = null;
+        List <MonHoc> li1 = new MonHocDAO().GetAll();
+        List <MonHoc> li2 = null;
         
         public FrmThemMonHoc_Lop()
         {
@@ -28,6 +29,7 @@ namespace QuanLyDonVi.GUI
         {
             InitializeComponent();
             id = Lop_id;
+            //li1 = new MonHocDAO().GetMonByLopID_No(id);
             li2 = new MonHocDAO().GetMonByLopID(id);
             LoadDataSource();
         }
@@ -45,11 +47,13 @@ namespace QuanLyDonVi.GUI
             lib_DSMonThem.ValueMember = "ID";
             lib_DSMonThem.DisplayMember = "Ten";
         }
+
+        // button >>>
         private void button1_Click(object sender, EventArgs e)
         {
             foreach (MonHoc item in lib_DSMon.SelectedItems)
             {
-                if(!li2.Contains(item))
+                if(li2.Where(x=>x.ID == item.ID).SingleOrDefault() == null)
                 {
                     li2.Add(item);
                     li1.Remove(item);
@@ -60,11 +64,13 @@ namespace QuanLyDonVi.GUI
             LoadDataSource();
         }
 
+
+        // button <<<
         private void button2_Click(object sender, EventArgs e)
         {
             foreach (MonHoc item in lib_DSMonThem.SelectedItems)
             {
-                if (!li1.Contains(item))
+                if (li1.Where(x => x.ID == item.ID).SingleOrDefault() == null)
                 {
                     li1.Add(item);
                     li2.Remove(item);
@@ -82,7 +88,20 @@ namespace QuanLyDonVi.GUI
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-
+            Lop_MonHoc _item = new Lop_MonHoc();
+            foreach (MonHoc item in li2)
+            {
+                _item.LopID = id;
+                _item.MonHocID = item.ID;
+                if(new MonHocDAO().Add_Lop_MonHoc(_item))
+                {
+                    MessageBox.Show("Lưu thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Xảy ra lỗi");
+                }
+            }
         }
     }
 }

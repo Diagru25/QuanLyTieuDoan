@@ -20,6 +20,7 @@ namespace QuanLyDonVi.GUI
         {
             InitializeComponent();
             LoadLop();
+            LoadMonHocLop();
             LoadcboTieuDoan();
             LoadcboDaiDoi();
             dgrLop.DataSource = list;
@@ -31,6 +32,19 @@ namespace QuanLyDonVi.GUI
         private void LoadLop()
         {
             list.DataSource = new LopDAO().GetAll();
+        }
+        private void LoadMonHocLop()
+        {
+            dgrMonHocLop.DataSource = null;
+
+            try
+            {
+                dgrMonHocLop.DataSource = new MonHocDAO().GetMonByLopID(Convert.ToInt32(txbID.Text));
+            }
+            catch
+            {
+
+            }
         }
         private void LoadcboTieuDoan()
         {
@@ -69,6 +83,9 @@ namespace QuanLyDonVi.GUI
             btn_Them.Text = "Thêm";
             btn_Sua.Text = "Sửa";
             btn_Xoa.Text = "Xóa";
+
+            btn_ThemMon.Enabled = true;
+            btn_XoaMon.Enabled = true;
         }
         private void UnLockControl()
         {
@@ -77,6 +94,9 @@ namespace QuanLyDonVi.GUI
             txbGhiChu.Enabled = true;
             cboTieuDoan.Enabled = true;
             cboDaiDoi.Enabled = true;
+
+            btn_ThemMon.Enabled = false;
+            btn_XoaMon.Enabled = false;
         }
         private void Empty()
         {
@@ -118,6 +138,7 @@ namespace QuanLyDonVi.GUI
                     MessageBox.Show("Không thành công");
                 }
                 LockControl();
+                LoadcboDaiDoi();
             }
         }
 
@@ -219,13 +240,35 @@ namespace QuanLyDonVi.GUI
         {
             FrmThemMonHoc_Lop frm = new FrmThemMonHoc_Lop(Convert.ToInt32(txbID.Text));
             frm.ShowDialog();
+            LoadMonHocLop();
         }
 
         private void btn_XoaMon_Click(object sender, EventArgs e)
         {
+            foreach(int i in grvMonHocLop.GetSelectedRows())
+            {
+                if(i >= 0)
+                {
+                    long monhoc_id = Convert.ToInt32(grvMonHocLop.GetRowCellValue(i,"ID"));
 
+                    new MonHocDAO().Remove_Lop_MonHoc(Convert.ToInt32(txbID.Text), monhoc_id);
+                }
+            }
+
+            LoadMonHocLop();
         }
         #endregion
 
+        private void txbID_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadMonHocLop();
+            }
+            catch
+            {
+                //
+            }
+        }
     }
 }

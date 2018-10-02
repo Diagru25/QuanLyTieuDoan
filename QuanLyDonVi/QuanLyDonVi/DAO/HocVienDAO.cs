@@ -95,5 +95,39 @@ namespace QuanLyDonVi.DAO
                 return false;
             }
         }
+
+        public List<object> GetHocVienIDByLopID(long lop_id)
+        {
+            var list = (from a in db.HocViens.Where(x => x.LopID == lop_id) select new {a = a.ID});
+
+            return list.ToList<Object>();
+        }
+
+        public bool Add_HocVien_MonHoc(HocVien_MonHoc item)
+        {
+            try
+            {
+                db.HocVien_MonHoc.Add(item);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool Remove_HocVien_MonHoc(HocVien_MonHoc item)
+        {
+            try
+            {
+                db.HocVien_MonHoc.Remove(db.HocVien_MonHoc.Where(x=>x.HocVienID == item.HocVienID && x.MonHocID == item.MonHocID).SingleOrDefault());
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
