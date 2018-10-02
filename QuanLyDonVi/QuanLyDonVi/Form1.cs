@@ -7,14 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using QuanLyDonVi.GUI;
+using QuanLyDonVi.Model.EF;
 
 namespace QuanLyDonVi
 {
     public partial class Form1 : System.Windows.Forms.Form
     {
+        Account acc = new Account();
         public Form1()
         {
             InitializeComponent();
+        }
+        public Form1(Account _acc)
+        {
+            InitializeComponent();
+            acc = _acc;
         }
         void LoadUc(Control ctrl)
         {
@@ -76,12 +83,12 @@ namespace QuanLyDonVi
 
         private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            LoadUc(new Uc_DoiMatKhau());
+            LoadUc(new Uc_DoiMatKhau(acc));
         }
 
         private void barButtonItem11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            LoadUc(new Uc_QLTaiKhoan());
+            LoadUc(new Uc_QLTaiKhoan(acc));
         }
     }
 }
