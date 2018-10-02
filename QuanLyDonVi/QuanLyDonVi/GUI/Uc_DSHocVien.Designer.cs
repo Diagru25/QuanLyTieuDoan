@@ -47,12 +47,15 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcHocVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvHocVien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -74,12 +77,14 @@
             // 
             // btn_Xoa
             // 
+            this.btn_Xoa.Enabled = false;
             this.btn_Xoa.Location = new System.Drawing.Point(620, 62);
             this.btn_Xoa.Name = "btn_Xoa";
             this.btn_Xoa.Size = new System.Drawing.Size(142, 29);
             this.btn_Xoa.TabIndex = 15;
             this.btn_Xoa.Text = "Xóa";
             this.btn_Xoa.UseVisualStyleBackColor = true;
+            this.btn_Xoa.Click += new System.EventHandler(this.btn_Xoa_Click);
             // 
             // btn_Them
             // 
@@ -89,15 +94,18 @@
             this.btn_Them.TabIndex = 14;
             this.btn_Them.Text = "Thêm học viên";
             this.btn_Them.UseVisualStyleBackColor = true;
+            this.btn_Them.Click += new System.EventHandler(this.btn_Them_Click);
             // 
             // btn_ChiTiet
             // 
+            this.btn_ChiTiet.Enabled = false;
             this.btn_ChiTiet.Location = new System.Drawing.Point(356, 62);
             this.btn_ChiTiet.Name = "btn_ChiTiet";
             this.btn_ChiTiet.Size = new System.Drawing.Size(142, 29);
             this.btn_ChiTiet.TabIndex = 13;
             this.btn_ChiTiet.Text = "Xem chi tiết";
             this.btn_ChiTiet.UseVisualStyleBackColor = true;
+            this.btn_ChiTiet.Click += new System.EventHandler(this.btn_ChiTiet_Click);
             // 
             // cb_TieuDoan
             // 
@@ -107,6 +115,7 @@
             this.cb_TieuDoan.Name = "cb_TieuDoan";
             this.cb_TieuDoan.Size = new System.Drawing.Size(142, 26);
             this.cb_TieuDoan.TabIndex = 7;
+            this.cb_TieuDoan.SelectedValueChanged += new System.EventHandler(this.cb_TieuDoan_SelectedValueChanged);
             // 
             // labelControl3
             // 
@@ -125,6 +134,7 @@
             this.cb_Lop.Name = "cb_Lop";
             this.cb_Lop.Size = new System.Drawing.Size(142, 26);
             this.cb_Lop.TabIndex = 5;
+            this.cb_Lop.SelectedValueChanged += new System.EventHandler(this.cb_Lop_SelectedValueChanged);
             // 
             // cb_DaiDoi
             // 
@@ -134,6 +144,7 @@
             this.cb_DaiDoi.Name = "cb_DaiDoi";
             this.cb_DaiDoi.Size = new System.Drawing.Size(142, 26);
             this.cb_DaiDoi.TabIndex = 3;
+            this.cb_DaiDoi.SelectedValueChanged += new System.EventHandler(this.cb_DaiDoi_SelectedValueChanged);
             // 
             // labelControl2
             // 
@@ -170,6 +181,8 @@
             this.grcHocVien.Location = new System.Drawing.Point(2, 20);
             this.grcHocVien.MainView = this.grvHocVien;
             this.grcHocVien.Name = "grcHocVien";
+            this.grcHocVien.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemDateEdit1});
             this.grcHocVien.Size = new System.Drawing.Size(863, 401);
             this.grcHocVien.TabIndex = 0;
             this.grcHocVien.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -191,9 +204,15 @@
             this.gridColumn4});
             this.grvHocVien.GridControl = this.grcHocVien;
             this.grvHocVien.Name = "grvHocVien";
+            this.grvHocVien.OptionsBehavior.Editable = false;
             this.grvHocVien.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.grvHocVien.OptionsFind.AlwaysVisible = true;
+            this.grvHocVien.OptionsFind.FindDelay = 100;
+            this.grvHocVien.OptionsFind.FindNullPrompt = "Nhập để tìm kiếm";
+            this.grvHocVien.OptionsFind.ShowClearButton = false;
+            this.grvHocVien.OptionsFind.ShowFindButton = false;
             this.grvHocVien.OptionsView.ShowGroupPanel = false;
+            this.grvHocVien.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.grvHocVien_RowCellClick);
             // 
             // gridColumn1
             // 
@@ -202,48 +221,65 @@
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 57;
+            this.gridColumn1.Width = 55;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Họ và tên";
+            this.gridColumn2.FieldName = "Ten";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 158;
+            this.gridColumn2.Width = 170;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Ngày Sinh";
+            this.gridColumn3.DisplayFormat.FormatString = "dd-MM-yyyy";
+            this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn3.FieldName = "NgaySinh";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 150;
+            this.gridColumn3.Width = 111;
             // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "Cấp bậc";
+            this.gridColumn7.FieldName = "CapBac";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 3;
-            this.gridColumn7.Width = 85;
+            this.gridColumn7.Width = 99;
             // 
             // gridColumn6
             // 
             this.gridColumn6.Caption = "Chức vụ";
+            this.gridColumn6.FieldName = "ChucVu";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 4;
-            this.gridColumn6.Width = 87;
+            this.gridColumn6.Width = 102;
             // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Đơn vị";
+            this.gridColumn4.FieldName = "DonVi";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 5;
-            this.gridColumn4.Width = 253;
+            this.gridColumn4.Width = 308;
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.Mask.EditMask = "dd - MM - yyyy";
+            this.repositoryItemDateEdit1.Mask.UseMaskAsDisplayFormat = true;
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
             // 
             // Uc_DSHocVien
             // 
@@ -260,6 +296,8 @@
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcHocVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvHocVien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -285,5 +323,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
     }
 }

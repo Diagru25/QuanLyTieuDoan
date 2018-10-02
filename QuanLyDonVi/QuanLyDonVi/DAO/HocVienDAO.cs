@@ -33,6 +33,7 @@ namespace QuanLyDonVi.DAO
                             DaiDoi_ID = (long)b.DaiDoiID,
                             DaiDoi_Ten = b.Ten,
                             Ten = a.Ten,
+                            NgaySinh = (DateTime)a.NgaySinh,
                             Lop_ID = (long)a.LopID,
                             Lop_Ten = b.Ten,
                             TieuDoan_ID = (long)c.TieuDoanID,

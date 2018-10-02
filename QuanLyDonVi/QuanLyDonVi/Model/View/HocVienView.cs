@@ -13,6 +13,7 @@ namespace QuanLyDonVi.Model.View
         public string CapBac { get; set; }
         public string ChucVu { get; set; }
         public string DonVi { get; set; }
+        public DateTime NgaySinh { get; set; }
         public long TieuDoan_ID { get; set; }
         public string TieuDoan_Ten { get; set; }
         public long DaiDoi_ID { get; set; }

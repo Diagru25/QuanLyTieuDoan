@@ -49,11 +49,11 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.btn_Luu = new System.Windows.Forms.Button();
+            this.btn_Sua = new System.Windows.Forms.Button();
             this.btn_In = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.btn_Sua = new System.Windows.Forms.Button();
-            this.btn_Luu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -288,6 +288,24 @@
             this.panelControl4.Size = new System.Drawing.Size(632, 122);
             this.panelControl4.TabIndex = 2;
             // 
+            // btn_Luu
+            // 
+            this.btn_Luu.Location = new System.Drawing.Point(409, 74);
+            this.btn_Luu.Name = "btn_Luu";
+            this.btn_Luu.Size = new System.Drawing.Size(142, 29);
+            this.btn_Luu.TabIndex = 20;
+            this.btn_Luu.Text = "Lưu";
+            this.btn_Luu.UseVisualStyleBackColor = true;
+            // 
+            // btn_Sua
+            // 
+            this.btn_Sua.Location = new System.Drawing.Point(141, 74);
+            this.btn_Sua.Name = "btn_Sua";
+            this.btn_Sua.Size = new System.Drawing.Size(142, 29);
+            this.btn_Sua.TabIndex = 19;
+            this.btn_Sua.Text = "Sửa";
+            this.btn_Sua.UseVisualStyleBackColor = true;
+            // 
             // btn_In
             // 
             this.btn_In.Location = new System.Drawing.Point(409, 27);
@@ -303,7 +321,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(141, 28);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(181, 26);
+            this.comboBox1.Size = new System.Drawing.Size(142, 26);
             this.comboBox1.TabIndex = 17;
             // 
             // labelControl4
@@ -314,24 +332,6 @@
             this.labelControl4.Size = new System.Drawing.Size(41, 14);
             this.labelControl4.TabIndex = 16;
             this.labelControl4.Text = "Học kỳ";
-            // 
-            // btn_Sua
-            // 
-            this.btn_Sua.Location = new System.Drawing.Point(141, 74);
-            this.btn_Sua.Name = "btn_Sua";
-            this.btn_Sua.Size = new System.Drawing.Size(142, 29);
-            this.btn_Sua.TabIndex = 19;
-            this.btn_Sua.Text = "Sửa";
-            this.btn_Sua.UseVisualStyleBackColor = true;
-            // 
-            // btn_Luu
-            // 
-            this.btn_Luu.Location = new System.Drawing.Point(409, 74);
-            this.btn_Luu.Name = "btn_Luu";
-            this.btn_Luu.Size = new System.Drawing.Size(142, 29);
-            this.btn_Luu.TabIndex = 20;
-            this.btn_Luu.Text = "Lưu";
-            this.btn_Luu.UseVisualStyleBackColor = true;
             // 
             // Uc_KetQuaHocTap
             // 
