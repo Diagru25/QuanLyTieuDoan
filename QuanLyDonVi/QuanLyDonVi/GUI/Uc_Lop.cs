@@ -88,7 +88,8 @@ namespace QuanLyDonVi.GUI
         }
         #endregion
 
-        #region
+        #region su kien
+
         private void btn_Them_Click(object sender, EventArgs e)
         {
             if (btn_Them.Text == "Thêm")
@@ -213,6 +214,18 @@ namespace QuanLyDonVi.GUI
 
             }
         }
+
+        private void btn_ThemMon_Click(object sender, EventArgs e)
+        {
+            FrmThemMonHoc_Lop frm = new FrmThemMonHoc_Lop(Convert.ToInt32(txbID.Text));
+            frm.ShowDialog();
+        }
+
+        private void btn_XoaMon_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
+
     }
 }

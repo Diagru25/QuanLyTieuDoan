@@ -20,6 +20,17 @@ namespace QuanLyDonVi.DAO
         {
             return db.MonHocs.ToList();
         }
+
+        public List<MonHoc> GetMonByLopID(long id)
+        {
+            var list = (from a in db.Lop_MonHoc
+                        join
+                        b in db.MonHocs
+                        on a.MonHocID equals b.ID
+                        where (a.LopID == id)
+                        select b).ToList();
+            return list;
+        }
         public bool Add(MonHoc item)
         {
             try

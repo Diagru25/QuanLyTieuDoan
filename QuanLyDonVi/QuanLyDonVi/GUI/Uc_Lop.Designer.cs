@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraLayout.ColumnDefinition columnDefinition15 = new DevExpress.XtraLayout.ColumnDefinition();
-            DevExpress.XtraLayout.ColumnDefinition columnDefinition16 = new DevExpress.XtraLayout.ColumnDefinition();
-            DevExpress.XtraLayout.RowDefinition rowDefinition15 = new DevExpress.XtraLayout.RowDefinition();
-            DevExpress.XtraLayout.RowDefinition rowDefinition16 = new DevExpress.XtraLayout.RowDefinition();
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
+            DevExpress.XtraLayout.RowDefinition rowDefinition4 = new DevExpress.XtraLayout.RowDefinition();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.cboDaiDoi = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -237,20 +237,20 @@
             this.layoutControlGroup1.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
-            columnDefinition15.SizeType = System.Windows.Forms.SizeType.Percent;
-            columnDefinition15.Width = 50D;
-            columnDefinition16.SizeType = System.Windows.Forms.SizeType.Percent;
-            columnDefinition16.Width = 50D;
+            columnDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
+            columnDefinition3.Width = 50D;
+            columnDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
+            columnDefinition4.Width = 50D;
             this.layoutControlGroup1.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] {
-            columnDefinition15,
-            columnDefinition16});
-            rowDefinition15.Height = 50D;
-            rowDefinition15.SizeType = System.Windows.Forms.SizeType.Percent;
-            rowDefinition16.Height = 50D;
-            rowDefinition16.SizeType = System.Windows.Forms.SizeType.Percent;
+            columnDefinition3,
+            columnDefinition4});
+            rowDefinition3.Height = 50D;
+            rowDefinition3.SizeType = System.Windows.Forms.SizeType.Percent;
+            rowDefinition4.Height = 50D;
+            rowDefinition4.SizeType = System.Windows.Forms.SizeType.Percent;
             this.layoutControlGroup1.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] {
-            rowDefinition15,
-            rowDefinition16});
+            rowDefinition3,
+            rowDefinition4});
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.layoutControlGroup1.Size = new System.Drawing.Size(321, 88);
             this.layoutControlGroup1.TextVisible = false;
@@ -434,6 +434,7 @@
             this.btn_XoaMon.TabIndex = 35;
             this.btn_XoaMon.Text = "Xóa môn học";
             this.btn_XoaMon.UseVisualStyleBackColor = true;
+            this.btn_XoaMon.Click += new System.EventHandler(this.btn_XoaMon_Click);
             // 
             // btn_ThemMon
             // 
@@ -443,6 +444,7 @@
             this.btn_ThemMon.TabIndex = 33;
             this.btn_ThemMon.Text = "Thêm môn học";
             this.btn_ThemMon.UseVisualStyleBackColor = true;
+            this.btn_ThemMon.Click += new System.EventHandler(this.btn_ThemMon_Click);
             // 
             // groupControl2
             // 
