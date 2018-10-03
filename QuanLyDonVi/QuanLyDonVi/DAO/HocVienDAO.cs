@@ -98,10 +98,10 @@ namespace QuanLyDonVi.DAO
 
         public List<long> GetHocVienIDByLopID(long lop_id)
         {
-            var list = (from a in db.HocViens.Where(x => x.LopID == lop_id) select new {a.ID}).ToList();
+            var list = (from a in db.HocViens.Where(x => x.LopID == lop_id) select new { a.ID }).ToList();
 
             List<long> liID = new List<long>();
-            foreach(var item in list)
+            foreach (var item in list)
             {
                 liID.Add(item.ID);
             }
@@ -126,7 +126,7 @@ namespace QuanLyDonVi.DAO
         {
             try
             {
-                db.HocVien_MonHoc.Remove(db.HocVien_MonHoc.Where(x=>x.HocVienID == item.HocVienID && x.MonHocID == item.MonHocID).SingleOrDefault());
+                db.HocVien_MonHoc.Remove(db.HocVien_MonHoc.Where(x => x.HocVienID == item.HocVienID && x.MonHocID == item.MonHocID).SingleOrDefault());
                 db.SaveChanges();
                 return true;
             }

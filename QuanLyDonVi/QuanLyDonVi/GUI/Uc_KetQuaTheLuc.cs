@@ -113,6 +113,55 @@ namespace QuanLyDonVi.GUI
         private void grvDSHocVien_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             pn_action.Enabled = true;
+            long id = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
+            LoadKQ(id);
+        }
+
+
+        // test
+        private void LoadKQ(long id)
+        {
+            grcKetQua.DataSource = new HocVienDAO().KQTL(id);
+        }
+        private void btn_Sua_Click(object sender, EventArgs e)
+        {
+            gr_data.Enabled = true;
+            grvKetQua.OptionsBehavior.ReadOnly = false;
+            grvKetQua.Columns[1].OptionsColumn.ReadOnly = false;
+        }
+
+        private void btn_Luu_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < grvKetQua.RowCount; i++)
+            {
+                
+                grvKetQua.SetRowCellValue(i, "KetQua", "Gioi");
+
+                HocVien_TheLuc item = new HocVien_TheLuc();
+                item.HocVienID = 1;
+                item.MonTheLucID = 1;
+                item.KetQua = Convert.ToDouble(grvKetQua.GetRowCellValue(i, "ThanhTich"));
+                new HocVienDAO().EditHVTL(item);
+            }
+        }
+
+        private void btn_In_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Excel |*.xls";
+            saveFileDialog1.Title = "Save an Excel File";
+            saveFileDialog1.ShowDialog();
+
+            string FileName = saveFileDialog1.FileName.ToString();
+            try
+            {
+                grcKetQua.ExportToXls(FileName);
+                MessageBox.Show("Xuất file excel thành công");
+            }
+            catch
+            {
+                MessageBox.Show("Vui lòng đóng file cần ghi lại để quá trình ghi thành công");
+            }
         }
     }
 }

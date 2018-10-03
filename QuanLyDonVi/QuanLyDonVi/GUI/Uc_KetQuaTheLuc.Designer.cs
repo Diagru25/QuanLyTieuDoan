@@ -259,6 +259,7 @@
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Môn Thi";
+            this.gridColumn4.FieldName = "MonThi";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
@@ -268,6 +269,7 @@
             // gridColumn6
             // 
             this.gridColumn6.Caption = "Thành tích";
+            this.gridColumn6.FieldName = "ThanhTich";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.ReadOnly = true;
             this.gridColumn6.Visible = true;
@@ -277,6 +279,7 @@
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Kết quả";
+            this.gridColumn5.FieldName = "KetQua";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.ReadOnly = true;
             this.gridColumn5.Visible = true;
