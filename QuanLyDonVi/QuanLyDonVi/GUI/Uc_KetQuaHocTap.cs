@@ -182,6 +182,8 @@ namespace QuanLyDonVi.GUI
         {
             if(btn_Huy_In.Text == "Hủy")
             {
+                btn_Sua.Text = "Sửa";
+                btn_Huy_In.Text = "In kết quả";
                 gridColumn5.OptionsColumn.ReadOnly = true;
                 LoadDataDiem();
             }
