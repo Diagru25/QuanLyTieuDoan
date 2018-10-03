@@ -127,6 +127,39 @@ namespace QuanLyDonVi.DAO
             try
             {
                 db.HocVien_MonHoc.Remove(db.HocVien_MonHoc.Where(x => x.HocVienID == item.HocVienID && x.MonHocID == item.MonHocID).SingleOrDefault());
+<<<<<<< HEAD
+=======
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<DiemView> KetQuaHocTap(long hocvienid, int hocky)
+        {
+            var data = from a in db.HocVien_MonHoc
+                       join b in db.MonHocs on a.MonHocID equals b.ID
+                       where a.HocVienID == hocvienid && (int)b.KyHoc == hocky
+                       select new DiemView()
+                       {
+                           HocVienID = a.HocVienID,
+                           KetQua = (float)a.Diem,
+                           MonHoc = b.Ten,
+                           MonHocID = a.MonHocID,
+                           SoTin = (int)b.SoTin
+                       };
+            return data.ToList();
+        }
+        public bool EditDiem(HocVien_MonHoc item)
+        {
+            try
+            {
+                var dbEntry = db.HocVien_MonHoc.SingleOrDefault(x => x.HocVienID == item.HocVienID && x.MonHocID == item.MonHocID);
+                dbEntry.Diem = item.Diem;
+>>>>>>> 94f2b37dd013245cfcadbf1b2cbb2c1edcf877fc
                 db.SaveChanges();
                 return true;
             }
