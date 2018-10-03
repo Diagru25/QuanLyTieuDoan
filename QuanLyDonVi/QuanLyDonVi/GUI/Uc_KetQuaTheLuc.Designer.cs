@@ -283,7 +283,6 @@
             this.gridColumn5.VisibleIndex = 2;
             this.gridColumn5.Width = 176;
             // 
-<<<<<<< HEAD
             // pn_action
             // 
             this.pn_action.Controls.Add(this.btn_Luu);
@@ -295,18 +294,6 @@
             this.pn_action.Name = "pn_action";
             this.pn_action.Size = new System.Drawing.Size(632, 100);
             this.pn_action.TabIndex = 0;
-=======
-            // panelControl4
-            // 
-            this.panelControl4.Controls.Add(this.btn_Luu);
-            this.panelControl4.Controls.Add(this.btn_Sua);
-            this.panelControl4.Controls.Add(this.btn_In);
-            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl4.Location = new System.Drawing.Point(2, 428);
-            this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(632, 100);
-            this.panelControl4.TabIndex = 0;
->>>>>>> 75e77571fe55bb689a5aa52d67db9f44ee10cd9f
             // 
             // btn_Luu
             // 
