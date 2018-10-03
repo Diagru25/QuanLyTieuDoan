@@ -49,9 +49,9 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.btn_In = new System.Windows.Forms.Button();
             this.btn_Luu = new System.Windows.Forms.Button();
             this.btn_Sua = new System.Windows.Forms.Button();
+            this.btn_In = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -215,7 +215,7 @@
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(632, 426);
             this.groupControl2.TabIndex = 3;
-            this.groupControl2.Text = "Kết quả";
+            this.groupControl2.Text = "Kết quả thể lực";
             // 
             // grcKetQua
             // 
@@ -244,6 +244,10 @@
             this.grvKetQua.Name = "grvKetQua";
             this.grvKetQua.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.grvKetQua.OptionsFind.AlwaysVisible = true;
+            this.grvKetQua.OptionsFind.FindDelay = 100;
+            this.grvKetQua.OptionsFind.FindNullPrompt = "Nhập để tìm kiếm";
+            this.grvKetQua.OptionsFind.ShowClearButton = false;
+            this.grvKetQua.OptionsFind.ShowFindButton = false;
             this.grvKetQua.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn4
@@ -284,15 +288,6 @@
             this.panelControl4.Size = new System.Drawing.Size(632, 100);
             this.panelControl4.TabIndex = 0;
             // 
-            // btn_In
-            // 
-            this.btn_In.Location = new System.Drawing.Point(446, 37);
-            this.btn_In.Name = "btn_In";
-            this.btn_In.Size = new System.Drawing.Size(142, 29);
-            this.btn_In.TabIndex = 19;
-            this.btn_In.Text = "In kết quả";
-            this.btn_In.UseVisualStyleBackColor = true;
-            // 
             // btn_Luu
             // 
             this.btn_Luu.Location = new System.Drawing.Point(237, 37);
@@ -310,6 +305,15 @@
             this.btn_Sua.TabIndex = 21;
             this.btn_Sua.Text = "Sửa";
             this.btn_Sua.UseVisualStyleBackColor = true;
+            // 
+            // btn_In
+            // 
+            this.btn_In.Location = new System.Drawing.Point(446, 37);
+            this.btn_In.Name = "btn_In";
+            this.btn_In.Size = new System.Drawing.Size(142, 29);
+            this.btn_In.TabIndex = 19;
+            this.btn_In.Text = "In kết quả";
+            this.btn_In.UseVisualStyleBackColor = true;
             // 
             // Uc_KetQuaTheLuc
             // 

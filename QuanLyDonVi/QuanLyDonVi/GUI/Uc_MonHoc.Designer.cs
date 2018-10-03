@@ -352,6 +352,10 @@
             this.grvMonHoc.OptionsBehavior.ReadOnly = true;
             this.grvMonHoc.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.grvMonHoc.OptionsFind.AlwaysVisible = true;
+            this.grvMonHoc.OptionsFind.FindDelay = 100;
+            this.grvMonHoc.OptionsFind.FindNullPrompt = "Nhập để tìm kiếm";
+            this.grvMonHoc.OptionsFind.ShowClearButton = false;
+            this.grvMonHoc.OptionsFind.ShowFindButton = false;
             this.grvMonHoc.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn4

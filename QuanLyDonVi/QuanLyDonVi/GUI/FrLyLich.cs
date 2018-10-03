@@ -13,7 +13,7 @@ using QuanLyDonVi.Model.EF;
 
 namespace QuanLyDonVi.GUI
 {
-    public partial class FrLyLich : DevExpress.XtraEditors.XtraForm
+    public partial class FrLyLich : System.Windows.Forms.Form
     {
         HocVien hv = null;
         long id = 0;

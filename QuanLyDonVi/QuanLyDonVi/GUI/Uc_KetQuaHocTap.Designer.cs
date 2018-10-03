@@ -246,6 +246,10 @@
             this.grvKetQua.Name = "grvKetQua";
             this.grvKetQua.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.grvKetQua.OptionsFind.AlwaysVisible = true;
+            this.grvKetQua.OptionsFind.FindDelay = 100;
+            this.grvKetQua.OptionsFind.FindNullPrompt = "Nhập để tìm kiếm";
+            this.grvKetQua.OptionsFind.ShowClearButton = false;
+            this.grvKetQua.OptionsFind.ShowFindButton = false;
             this.grvKetQua.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn4
