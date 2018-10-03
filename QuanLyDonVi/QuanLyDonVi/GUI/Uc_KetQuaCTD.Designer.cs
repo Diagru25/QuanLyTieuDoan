@@ -42,13 +42,13 @@
             this.cb_TieuDoan = new System.Windows.Forms.ComboBox();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.gr_data = new DevExpress.XtraEditors.GroupControl();
             this.grcKetQua = new DevExpress.XtraGrid.GridControl();
             this.grvKetQua = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.pn_action = new DevExpress.XtraEditors.PanelControl();
             this.btn_Luu = new System.Windows.Forms.Button();
             this.btn_Sua = new System.Windows.Forms.Button();
             this.btn_In = new System.Windows.Forms.Button();
@@ -62,12 +62,12 @@
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gr_data)).BeginInit();
+            this.gr_data.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcKetQua)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvKetQua)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
-            this.panelControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pn_action)).BeginInit();
+            this.pn_action.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -108,8 +108,10 @@
             this.gridColumn2});
             this.grvDSHocVien.GridControl = this.grcDSHocVien;
             this.grvDSHocVien.Name = "grvDSHocVien";
+            this.grvDSHocVien.OptionsBehavior.Editable = false;
             this.grvDSHocVien.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.grvDSHocVien.OptionsView.ShowGroupPanel = false;
+            this.grvDSHocVien.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.grvDSHocVien_RowCellClick);
             // 
             // gridColumn1
             // 
@@ -151,6 +153,7 @@
             this.cb_Lop.Name = "cb_Lop";
             this.cb_Lop.Size = new System.Drawing.Size(136, 26);
             this.cb_Lop.TabIndex = 19;
+            this.cb_Lop.SelectedValueChanged += new System.EventHandler(this.cb_Lop_SelectedValueChanged);
             // 
             // labelControl1
             // 
@@ -169,6 +172,7 @@
             this.cb_DaiDoi.Name = "cb_DaiDoi";
             this.cb_DaiDoi.Size = new System.Drawing.Size(136, 26);
             this.cb_DaiDoi.TabIndex = 17;
+            this.cb_DaiDoi.SelectedValueChanged += new System.EventHandler(this.cb_DaiDoi_SelectedValueChanged);
             // 
             // labelControl2
             // 
@@ -187,6 +191,7 @@
             this.cb_TieuDoan.Name = "cb_TieuDoan";
             this.cb_TieuDoan.Size = new System.Drawing.Size(136, 26);
             this.cb_TieuDoan.TabIndex = 15;
+            this.cb_TieuDoan.SelectedValueChanged += new System.EventHandler(this.cb_TieuDoan_SelectedValueChanged);
             // 
             // labelControl3
             // 
@@ -199,23 +204,24 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.groupControl2);
-            this.panelControl2.Controls.Add(this.panelControl4);
+            this.panelControl2.Controls.Add(this.gr_data);
+            this.panelControl2.Controls.Add(this.pn_action);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(636, 530);
             this.panelControl2.TabIndex = 1;
             // 
-            // groupControl2
+            // gr_data
             // 
-            this.groupControl2.Controls.Add(this.grcKetQua);
-            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl2.Location = new System.Drawing.Point(2, 2);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(632, 426);
-            this.groupControl2.TabIndex = 3;
-            this.groupControl2.Text = "Kết quả CTĐ - CTCT";
+            this.gr_data.Controls.Add(this.grcKetQua);
+            this.gr_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gr_data.Enabled = false;
+            this.gr_data.Location = new System.Drawing.Point(2, 2);
+            this.gr_data.Name = "gr_data";
+            this.gr_data.Size = new System.Drawing.Size(632, 426);
+            this.gr_data.TabIndex = 3;
+            this.gr_data.Text = "Kết quả CTĐ - CTCT";
             // 
             // grcKetQua
             // 
@@ -273,16 +279,17 @@
             this.gridColumn5.VisibleIndex = 2;
             this.gridColumn5.Width = 176;
             // 
-            // panelControl4
+            // pn_action
             // 
-            this.panelControl4.Controls.Add(this.btn_Luu);
-            this.panelControl4.Controls.Add(this.btn_Sua);
-            this.panelControl4.Controls.Add(this.btn_In);
-            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl4.Location = new System.Drawing.Point(2, 428);
-            this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(632, 100);
-            this.panelControl4.TabIndex = 0;
+            this.pn_action.Controls.Add(this.btn_Luu);
+            this.pn_action.Controls.Add(this.btn_Sua);
+            this.pn_action.Controls.Add(this.btn_In);
+            this.pn_action.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pn_action.Enabled = false;
+            this.pn_action.Location = new System.Drawing.Point(2, 428);
+            this.pn_action.Name = "pn_action";
+            this.pn_action.Size = new System.Drawing.Size(632, 100);
+            this.pn_action.TabIndex = 0;
             // 
             // btn_Luu
             // 
@@ -330,12 +337,12 @@
             this.panelControl3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gr_data)).EndInit();
+            this.gr_data.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcKetQua)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvKetQua)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
-            this.panelControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pn_action)).EndInit();
+            this.pn_action.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -356,13 +363,13 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private System.Windows.Forms.ComboBox cb_TieuDoan;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.GroupControl gr_data;
         private DevExpress.XtraGrid.GridControl grcKetQua;
         private DevExpress.XtraGrid.Views.Grid.GridView grvKetQua;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraEditors.PanelControl panelControl4;
+        private DevExpress.XtraEditors.PanelControl pn_action;
         private System.Windows.Forms.Button btn_In;
         private System.Windows.Forms.Button btn_Luu;
         private System.Windows.Forms.Button btn_Sua;
