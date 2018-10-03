@@ -114,5 +114,17 @@ namespace QuanLyDonVi.GUI
         {
             pn_action.Enabled = true;
         }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch
+            {
+
+            }
+        }
     }
 }
