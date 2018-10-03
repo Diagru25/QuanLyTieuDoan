@@ -48,11 +48,7 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-<<<<<<< HEAD
             this.pn_action = new DevExpress.XtraEditors.PanelControl();
-=======
-            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
->>>>>>> 75e77571fe55bb689a5aa52d67db9f44ee10cd9f
             this.btn_Luu = new System.Windows.Forms.Button();
             this.btn_Sua = new System.Windows.Forms.Button();
             this.btn_In = new System.Windows.Forms.Button();
@@ -218,7 +214,6 @@
             // 
             // gr_data
             // 
-<<<<<<< HEAD
             this.gr_data.Controls.Add(this.grcKetQua);
             this.gr_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gr_data.Enabled = false;
@@ -227,15 +222,6 @@
             this.gr_data.Size = new System.Drawing.Size(632, 426);
             this.gr_data.TabIndex = 3;
             this.gr_data.Text = "Kết quả";
-=======
-            this.groupControl2.Controls.Add(this.grcKetQua);
-            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl2.Location = new System.Drawing.Point(2, 2);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(632, 426);
-            this.groupControl2.TabIndex = 3;
-            this.groupControl2.Text = "Kết quả thể lực";
->>>>>>> 75e77571fe55bb689a5aa52d67db9f44ee10cd9f
             // 
             // grcKetQua
             // 
