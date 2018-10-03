@@ -96,11 +96,17 @@ namespace QuanLyDonVi.DAO
             }
         }
 
-        public List<object> GetHocVienIDByLopID(long lop_id)
+        public List<long> GetHocVienIDByLopID(long lop_id)
         {
-            var list = (from a in db.HocViens.Where(x => x.LopID == lop_id) select new {a = a.ID});
+            var list = (from a in db.HocViens.Where(x => x.LopID == lop_id) select new {a.ID}).ToList();
 
-            return list.ToList<Object>();
+            List<long> liID = new List<long>();
+            foreach(var item in list)
+            {
+                liID.Add(item.ID);
+            }
+
+            return liID;
         }
 
         public bool Add_HocVien_MonHoc(HocVien_MonHoc item)

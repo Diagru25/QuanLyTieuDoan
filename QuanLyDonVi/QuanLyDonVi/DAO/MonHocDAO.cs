@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QuanLyDonVi.DAO
 {
@@ -108,7 +109,7 @@ namespace QuanLyDonVi.DAO
                 db.SaveChanges();
 
                 // tự động thêm vào bảng HocVien_MonHoc với tất cả các HV thuộc lớp có id = item.LopID
-                var list = new HocVienDAO().GetHocVienIDByLopID(item.LopID);
+                List<long> list = new HocVienDAO().GetHocVienIDByLopID(item.LopID);
                 HocVien_MonHoc temp = new HocVien_MonHoc();
 
                 foreach (long i in list)
@@ -139,7 +140,7 @@ namespace QuanLyDonVi.DAO
                 db.Lop_MonHoc.Remove(item);
                 db.SaveChanges();
 
-                var list = new HocVienDAO().GetHocVienIDByLopID(lop_id);
+                List<long> list = new HocVienDAO().GetHocVienIDByLopID(lop_id);
                 HocVien_MonHoc temp = new HocVien_MonHoc();
 
                 foreach (long i in list)

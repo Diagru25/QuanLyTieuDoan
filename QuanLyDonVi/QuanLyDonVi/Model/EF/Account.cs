@@ -15,5 +15,8 @@ namespace QuanLyDonVi.Model.EF
 
         [StringLength(50)]
         public string Password { get; set; }
+
+        [StringLength(50)]
+        public string Type { get; set; }
     }
 }

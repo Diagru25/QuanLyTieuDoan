@@ -48,7 +48,11 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+<<<<<<< HEAD
             this.pn_action = new DevExpress.XtraEditors.PanelControl();
+=======
+            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+>>>>>>> 75e77571fe55bb689a5aa52d67db9f44ee10cd9f
             this.btn_Luu = new System.Windows.Forms.Button();
             this.btn_Sua = new System.Windows.Forms.Button();
             this.btn_In = new System.Windows.Forms.Button();
@@ -214,6 +218,7 @@
             // 
             // gr_data
             // 
+<<<<<<< HEAD
             this.gr_data.Controls.Add(this.grcKetQua);
             this.gr_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gr_data.Enabled = false;
@@ -222,6 +227,15 @@
             this.gr_data.Size = new System.Drawing.Size(632, 426);
             this.gr_data.TabIndex = 3;
             this.gr_data.Text = "Kết quả";
+=======
+            this.groupControl2.Controls.Add(this.grcKetQua);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl2.Location = new System.Drawing.Point(2, 2);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(632, 426);
+            this.groupControl2.TabIndex = 3;
+            this.groupControl2.Text = "Kết quả thể lực";
+>>>>>>> 75e77571fe55bb689a5aa52d67db9f44ee10cd9f
             // 
             // grcKetQua
             // 
@@ -250,6 +264,10 @@
             this.grvKetQua.Name = "grvKetQua";
             this.grvKetQua.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.grvKetQua.OptionsFind.AlwaysVisible = true;
+            this.grvKetQua.OptionsFind.FindDelay = 100;
+            this.grvKetQua.OptionsFind.FindNullPrompt = "Nhập để tìm kiếm";
+            this.grvKetQua.OptionsFind.ShowClearButton = false;
+            this.grvKetQua.OptionsFind.ShowFindButton = false;
             this.grvKetQua.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn4
@@ -279,6 +297,7 @@
             this.gridColumn5.VisibleIndex = 2;
             this.gridColumn5.Width = 176;
             // 
+<<<<<<< HEAD
             // pn_action
             // 
             this.pn_action.Controls.Add(this.btn_Luu);
@@ -290,6 +309,18 @@
             this.pn_action.Name = "pn_action";
             this.pn_action.Size = new System.Drawing.Size(632, 100);
             this.pn_action.TabIndex = 0;
+=======
+            // panelControl4
+            // 
+            this.panelControl4.Controls.Add(this.btn_Luu);
+            this.panelControl4.Controls.Add(this.btn_Sua);
+            this.panelControl4.Controls.Add(this.btn_In);
+            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl4.Location = new System.Drawing.Point(2, 428);
+            this.panelControl4.Name = "panelControl4";
+            this.panelControl4.Size = new System.Drawing.Size(632, 100);
+            this.panelControl4.TabIndex = 0;
+>>>>>>> 75e77571fe55bb689a5aa52d67db9f44ee10cd9f
             // 
             // btn_Luu
             // 

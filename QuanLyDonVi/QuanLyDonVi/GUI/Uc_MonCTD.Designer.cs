@@ -364,6 +364,10 @@
             this.grvConTacDang.OptionsBehavior.ReadOnly = true;
             this.grvConTacDang.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.grvConTacDang.OptionsFind.AlwaysVisible = true;
+            this.grvConTacDang.OptionsFind.FindDelay = 100;
+            this.grvConTacDang.OptionsFind.FindNullPrompt = "Nhập để tìm kiếm";
+            this.grvConTacDang.OptionsFind.ShowClearButton = false;
+            this.grvConTacDang.OptionsFind.ShowFindButton = false;
             this.grvConTacDang.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn4

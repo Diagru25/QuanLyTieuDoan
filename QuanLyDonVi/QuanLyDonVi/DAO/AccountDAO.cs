@@ -18,14 +18,11 @@ namespace QuanLyDonVi.DAO
 
 
 
-        public bool Is_login(string username, string pass)
+        public Account Is_login(string username, string pass)
         {
-            if (db.Accounts.Where(x => x.Username == username && x.Password == pass).SingleOrDefault() != null)
-            {
-                return true;
-            }
-            else
-                return false;
+            Account item = db.Accounts.Where(x => x.Username == username && x.Password == pass).SingleOrDefault();
+
+            return item;
         }
 
         public List<Account> GetAll()
@@ -74,6 +71,11 @@ namespace QuanLyDonVi.DAO
             {
                 return false;
             }
+        }
+
+        public string GetTypeByU(string username)
+        {
+            return db.Accounts.Where(x => x.Username == username).Single().Type;
         }
     }
 }
