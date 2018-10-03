@@ -8,8 +8,10 @@ namespace QuanLyDonVi.Model.View
 {
     public class DiemView
     {
+        public long HocVienID { get; set; }
         public long MonHocID { get; set; }
-        public string Mon { get; set; }
+        public string MonHoc { get; set; }
+        public int SoTin { get; set; }
         public float KetQua { get; set; }
     }
 }

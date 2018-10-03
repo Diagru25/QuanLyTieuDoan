@@ -49,9 +49,8 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pn_action = new DevExpress.XtraEditors.PanelControl();
-            this.btn_Luu = new System.Windows.Forms.Button();
+            this.btn_Huy_In = new System.Windows.Forms.Button();
             this.btn_Sua = new System.Windows.Forms.Button();
-            this.btn_In = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -257,10 +256,12 @@
             this.grvKetQua.OptionsFind.ShowClearButton = false;
             this.grvKetQua.OptionsFind.ShowFindButton = false;
             this.grvKetQua.OptionsView.ShowGroupPanel = false;
+            this.grvKetQua.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvKetQua_CellValueChanged);
             // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "Môn học";
+            this.gridColumn4.FieldName = "MonHoc";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
@@ -270,6 +271,7 @@
             // gridColumn6
             // 
             this.gridColumn6.Caption = "Số TC";
+            this.gridColumn6.FieldName = "SoTin";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.ReadOnly = true;
             this.gridColumn6.Visible = true;
@@ -279,6 +281,7 @@
             // gridColumn5
             // 
             this.gridColumn5.Caption = "Điểm Tổng kết";
+            this.gridColumn5.FieldName = "KetQua";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.ReadOnly = true;
             this.gridColumn5.Visible = true;
@@ -287,9 +290,8 @@
             // 
             // pn_action
             // 
-            this.pn_action.Controls.Add(this.btn_Luu);
+            this.pn_action.Controls.Add(this.btn_Huy_In);
             this.pn_action.Controls.Add(this.btn_Sua);
-            this.pn_action.Controls.Add(this.btn_In);
             this.pn_action.Controls.Add(this.comboBox1);
             this.pn_action.Controls.Add(this.labelControl4);
             this.pn_action.Dock = System.Windows.Forms.DockStyle.Top;
@@ -299,14 +301,15 @@
             this.pn_action.Size = new System.Drawing.Size(632, 122);
             this.pn_action.TabIndex = 2;
             // 
-            // btn_Luu
+            // btn_Huy_In
             // 
-            this.btn_Luu.Location = new System.Drawing.Point(409, 74);
-            this.btn_Luu.Name = "btn_Luu";
-            this.btn_Luu.Size = new System.Drawing.Size(142, 29);
-            this.btn_Luu.TabIndex = 20;
-            this.btn_Luu.Text = "Lưu";
-            this.btn_Luu.UseVisualStyleBackColor = true;
+            this.btn_Huy_In.Location = new System.Drawing.Point(409, 74);
+            this.btn_Huy_In.Name = "btn_Huy_In";
+            this.btn_Huy_In.Size = new System.Drawing.Size(142, 29);
+            this.btn_Huy_In.TabIndex = 20;
+            this.btn_Huy_In.Text = "In kết quả";
+            this.btn_Huy_In.UseVisualStyleBackColor = true;
+            this.btn_Huy_In.Click += new System.EventHandler(this.btn_Huy_In_Click);
             // 
             // btn_Sua
             // 
@@ -316,15 +319,7 @@
             this.btn_Sua.TabIndex = 19;
             this.btn_Sua.Text = "Sửa";
             this.btn_Sua.UseVisualStyleBackColor = true;
-            // 
-            // btn_In
-            // 
-            this.btn_In.Location = new System.Drawing.Point(409, 27);
-            this.btn_In.Name = "btn_In";
-            this.btn_In.Size = new System.Drawing.Size(142, 29);
-            this.btn_In.TabIndex = 18;
-            this.btn_In.Text = "In kết quả";
-            this.btn_In.UseVisualStyleBackColor = true;
+            this.btn_Sua.Click += new System.EventHandler(this.btn_Sua_Click);
             // 
             // comboBox1
             // 
@@ -345,7 +340,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(142, 26);
             this.comboBox1.TabIndex = 17;
-            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // labelControl4
             // 
@@ -409,10 +404,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraEditors.PanelControl pn_action;
-        private System.Windows.Forms.Button btn_In;
         private System.Windows.Forms.ComboBox comboBox1;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private System.Windows.Forms.Button btn_Luu;
+        private System.Windows.Forms.Button btn_Huy_In;
         private System.Windows.Forms.Button btn_Sua;
     }
 }
