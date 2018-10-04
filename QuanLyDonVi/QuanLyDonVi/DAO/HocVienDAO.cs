@@ -47,6 +47,43 @@ namespace QuanLyDonVi.DAO
             try
             {
                 db.HocViens.Add(item);
+
+                //Them mon hoc
+
+                List<Lop_MonHoc> monhoc = db.Lop_MonHoc.Where(x => x.LopID == item.LopID).ToList();
+                HocVien_MonHoc temp_mh = new HocVien_MonHoc();
+                temp_mh.HocVienID = item.ID;
+                temp_mh.Diem = 0;
+                foreach(var mh in monhoc)
+                {
+                    temp_mh.MonHocID = mh.MonHocID;
+                    this.Add_HocVien_MonHoc(temp_mh);
+                }
+
+                // Them mon the luc
+
+                List<MonTheLuc> montheluc = db.MonTheLucs.ToList();
+                HocVien_TheLuc temp_mtl = new HocVien_TheLuc();
+                temp_mtl.HocVienID = item.ID;
+                temp_mtl.KetQua = 0;
+                foreach(var mtl in montheluc)
+                {
+                    temp_mtl.MonTheLucID = mtl.ID;
+                    this.Add_HocVien_MonTheLuc(temp_mtl);
+                }
+
+                //Them mon cong tac dang
+
+                List<CongTacDang> monctd = db.CongTacDangs.ToList();
+                HocVien_CongTacDang temp_mctd = new HocVien_CongTacDang();
+                temp_mctd.HocVienID = item.ID;
+                temp_mctd.Diem = 0;
+                foreach (var mctd in monctd)
+                {
+                    temp_mctd.Diem = mctd.ID;
+                    this.Add_HocVien_CongTacDang(temp_mctd);
+                }
+
                 db.SaveChanges();
                 return true;
             }
@@ -87,6 +124,33 @@ namespace QuanLyDonVi.DAO
             {
                 var dbEntry = db.HocViens.SingleOrDefault(x => x.ID == id);
                 db.HocViens.Remove(dbEntry);
+
+                // Xoa ket qua hoc tap 
+
+                List<HocVien_MonHoc> monhoc = db.HocVien_MonHoc.Where(x => x.HocVienID == id).ToList();
+
+                foreach(var item in monhoc)
+                {
+                    db.HocVien_MonHoc.Remove(item);
+                }
+
+                // Xoa ket qua TL
+
+                List<HocVien_TheLuc> montl = db.HocVien_TheLuc.Where(x => x.HocVienID == id).ToList();
+
+                foreach (var item in montl)
+                {
+                    db.HocVien_TheLuc.Remove(item);
+                }
+
+                //Xoa ket qua CTD
+
+                List<HocVien_CongTacDang> monctd = db.HocVien_CongTacDang.Where(x => x.HocVienID == id).ToList();
+
+                foreach (var item in monctd)
+                {
+                    db.HocVien_CongTacDang.Remove(item);
+                }
                 db.SaveChanges();
                 return true;
             }
@@ -114,6 +178,32 @@ namespace QuanLyDonVi.DAO
             try
             {
                 db.HocVien_MonHoc.Add(item);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool Add_HocVien_MonTheLuc(HocVien_TheLuc item)
+        {
+            try
+            {
+                db.HocVien_TheLuc.Add(item);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool Add_HocVien_CongTacDang(HocVien_CongTacDang item)
+        {
+            try
+            {
+                db.HocVien_CongTacDang.Add(item);
                 db.SaveChanges();
                 return true;
             }

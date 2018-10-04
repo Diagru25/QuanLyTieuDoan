@@ -26,6 +26,18 @@ namespace QuanLyDonVi.DAO
             {
                 db.MonTheLucs.Add(item);
                 db.SaveChanges();
+
+                HocVien_TheLuc temp = new HocVien_TheLuc();
+                temp.KetQua = 0;
+                temp.MonTheLucID = item.ID;
+                List<HocVien> hv = db.HocViens.ToList();
+                HocVienDAO dao = new HocVienDAO();
+                foreach(var x in hv)
+                {
+                    temp.HocVienID = x.ID;
+                    dao.Add_HocVien_MonTheLuc(temp);
+                }
+
                 return true;
             }
             catch

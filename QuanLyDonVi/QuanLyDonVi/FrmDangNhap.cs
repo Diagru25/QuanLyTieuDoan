@@ -26,7 +26,12 @@ namespace QuanLyDonVi
             if (acc != null)
             {    
                 Form1 frm = new Form1(acc);
-                frm.Show();
+                this.Hide();
+                frm.ShowDialog();
+                txbUsername.Text = "";
+                txbPass.Text = "";
+                this.Show();
+                
             }
             else
             {

@@ -21,6 +21,10 @@ namespace QuanLyDonVi.DAO
         {
             return db.MonHocs.ToList();
         }
+        public List<MonHoc> GetMonNotByLopID()
+        {
+
+        }
 
         // lay ra nhung mon hoc ma lop do dang hoc
         public List<MonHoc> GetMonByLopID(long id)

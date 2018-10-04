@@ -90,5 +90,10 @@ namespace QuanLyDonVi
         {
             LoadUc(new Uc_QLTaiKhoan(acc));
         }
+
+        private void barButtonItem15_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

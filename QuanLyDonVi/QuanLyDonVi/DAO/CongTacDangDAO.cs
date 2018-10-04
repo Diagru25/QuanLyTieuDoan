@@ -26,6 +26,18 @@ namespace QuanLyDonVi.DAO
             {
                 db.CongTacDangs.Add(item);
                 db.SaveChanges();
+
+                HocVien_CongTacDang temp = new HocVien_CongTacDang();
+                temp.Diem = 0;
+                temp.CongTacDangID = item.ID;
+                List<HocVien> hv = db.HocViens.ToList();
+                HocVienDAO dao = new HocVienDAO();
+                foreach (var x in hv)
+                {
+                    temp.HocVienID = x.ID;
+                    dao.Add_HocVien_CongTacDang(temp);
+                }
+
                 return true;
             }
             catch

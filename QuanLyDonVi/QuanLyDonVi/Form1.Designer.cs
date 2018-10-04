@@ -61,6 +61,7 @@
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             this.panelmain = new DevExpress.XtraEditors.PanelControl();
+            this.barButtonItem15 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.tabFormDefaultManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelmain)).BeginInit();
@@ -119,9 +120,10 @@
             this.barButtonItem10,
             this.barButtonItem11,
             this.barButtonItem12,
-            this.barButtonItem14});
+            this.barButtonItem14,
+            this.barButtonItem15});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 16;
+            this.ribbonControl1.MaxItemId = 17;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -302,6 +304,7 @@
             // 
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem10);
             this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem11);
+            this.ribbonPageGroup6.ItemLinks.Add(this.barButtonItem15);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             this.ribbonPageGroup6.Text = "Tài khoản";
             // 
@@ -328,6 +331,15 @@
             this.panelmain.Name = "panelmain";
             this.panelmain.Size = new System.Drawing.Size(867, 530);
             this.panelmain.TabIndex = 5;
+            // 
+            // barButtonItem15
+            // 
+            this.barButtonItem15.Caption = "Đăng xuất";
+            this.barButtonItem15.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem15.Glyph")));
+            this.barButtonItem15.Id = 16;
+            this.barButtonItem15.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem15.LargeGlyph")));
+            this.barButtonItem15.Name = "barButtonItem15";
+            this.barButtonItem15.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem15_ItemClick);
             // 
             // Form1
             // 
@@ -384,6 +396,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem13;
         private DevExpress.XtraEditors.PanelControl panelmain;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem15;
     }
 }
 
