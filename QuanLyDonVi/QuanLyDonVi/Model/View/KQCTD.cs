@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace QuanLyDonVi.Model.View
 {
-    public class KQTheLuc
+    public class KQCTD
     {
-        public long MonTheLucID { get; set; }
+        public long MonCTDID { get; set; }
 
         public string MonThi { get; set; }
 

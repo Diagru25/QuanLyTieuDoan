@@ -127,8 +127,7 @@ namespace QuanLyDonVi.DAO
             try
             {
                 db.HocVien_MonHoc.Remove(db.HocVien_MonHoc.Where(x => x.HocVienID == item.HocVienID && x.MonHocID == item.MonHocID).SingleOrDefault());
-<<<<<<< HEAD
-=======
+
                 db.SaveChanges();
                 return true;
             }
@@ -159,7 +158,95 @@ namespace QuanLyDonVi.DAO
             {
                 var dbEntry = db.HocVien_MonHoc.SingleOrDefault(x => x.HocVienID == item.HocVienID && x.MonHocID == item.MonHocID);
                 dbEntry.Diem = item.Diem;
->>>>>>> 94f2b37dd013245cfcadbf1b2cbb2c1edcf877fc
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<KQTheLuc> KetQuaTheLuc(long hocvienid)
+        {
+            var data = (from a in db.HocVien_TheLuc
+                       join b in db.MonTheLucs on a.MonTheLucID equals b.ID
+                       where a.HocVienID == hocvienid
+                       select new KQTheLuc()
+                       {
+                           MonTheLucID = b.ID,
+                           MonThi = b.Ten,
+                           ThanhTich = a.KetQua,
+                           KetQua = "",
+                           Dat = b.Dat,
+                           Kha = b.Kha,
+                           Gioi = b.Gioi,
+                       }).ToList();
+
+            foreach(var item in data)
+            {
+                if (item.ThanhTich < item.Dat)
+                    item.KetQua = "Không đạt";
+                else if (item.ThanhTich >= item.Dat && item.ThanhTich < item.Kha)
+                    item.KetQua = "Đạt";
+                else if (item.ThanhTich >= item.Kha && item.ThanhTich < item.Gioi)
+                    item.KetQua = "Khá";
+                else
+                    item.KetQua = "Giỏi";
+            }
+            return data;
+        }
+
+        public bool EditTheLuc(HocVien_TheLuc item)
+        {
+            try
+            {
+                var dbEntry = db.HocVien_TheLuc.SingleOrDefault(x => x.HocVienID == item.HocVienID && x.MonTheLucID == item.MonTheLucID);
+                dbEntry.KetQua = item.KetQua;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public List<KQCTD> KetQuaCTD(long hocvienid)
+        {
+            var data = (from a in db.HocVien_CongTacDang
+                        join b in db.CongTacDangs on a.CongTacDangID equals b.ID
+                        where a.HocVienID == hocvienid
+                        select new KQCTD()
+                        {
+                            MonCTDID = b.ID,
+                            MonThi = b.Ten,
+                            ThanhTich = a.Diem,
+                            KetQua = "",
+                            Dat = b.Dat,
+                            Kha = b.Kha,
+                            Gioi = b.Gioi,
+                        }).ToList();
+
+            foreach (var item in data)
+            {
+                if (item.ThanhTich < item.Dat)
+                    item.KetQua = "Không đạt";
+                else if (item.ThanhTich >= item.Dat && item.ThanhTich < item.Kha)
+                    item.KetQua = "Đạt";
+                else if (item.ThanhTich >= item.Kha && item.ThanhTich < item.Gioi)
+                    item.KetQua = "Khá";
+                else
+                    item.KetQua = "Giỏi";
+            }
+            return data;
+        }
+
+        public bool EditCTD(HocVien_CongTacDang item)
+        {
+            try
+            {
+                var dbEntry = db.HocVien_CongTacDang.SingleOrDefault(x => x.HocVienID == item.HocVienID && x.CongTacDangID == item.CongTacDangID);
+                dbEntry.Diem = item.Diem;
                 db.SaveChanges();
                 return true;
             }

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using QuanLyDonVi.DAO;
 using QuanLyDonVi.Model.EF;
+using QuanLyDonVi.Model.View;
 
 namespace QuanLyDonVi.GUI
 {
@@ -18,6 +19,8 @@ namespace QuanLyDonVi.GUI
         List<TieuDoan> list_TieuDoan = new List<TieuDoan>();
         List<DaiDoi> list_DaiDoi = new List<DaiDoi>();
         List<Lop> list_Lop = new List<Lop>();
+        List<KQTheLuc> list_KQTL = new List<KQTheLuc>();
+        long id_rowchange;
         public Uc_KetQuaTheLuc()
         {
             InitializeComponent();
@@ -113,54 +116,109 @@ namespace QuanLyDonVi.GUI
         private void grvDSHocVien_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             pn_action.Enabled = true;
-            long id = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
-            LoadKQ(id);
+            LoadDataKQTheLuc();
+            gr_data.Enabled = true;
         }
-
-
-        // test
-        private void LoadKQ(long id)
+        void LoadDataKQTheLuc()
         {
-            grcKetQua.DataSource = new HocVienDAO().KQTL(id);
+            long hocvienid = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
+            list_KQTL.Clear();
+            list_KQTL.AddRange(new HocVienDAO().KetQuaTheLuc(hocvienid));
+            grcKetQua.DataSource = null;
+            grcKetQua.DataSource = list_KQTL;
         }
+
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-            gr_data.Enabled = true;
-            grvKetQua.OptionsBehavior.ReadOnly = false;
-            grvKetQua.Columns[1].OptionsColumn.ReadOnly = false;
-        }
-
-        private void btn_Luu_Click(object sender, EventArgs e)
-        {
-            for(int i = 0; i < grvKetQua.RowCount; i++)
+            grvKetQua.SetRowCellValue(0, "KetQua", "ABC");
+            if (btn_Sua.Text == "Sửa")
             {
-                
-                grvKetQua.SetRowCellValue(i, "KetQua", "Gioi");
-
-                HocVien_TheLuc item = new HocVien_TheLuc();
-                item.HocVienID = 1;
-                item.MonTheLucID = 1;
-                item.KetQua = Convert.ToDouble(grvKetQua.GetRowCellValue(i, "ThanhTich"));
-                new HocVienDAO().EditHVTL(item);
+                gridColumn6.OptionsColumn.ReadOnly = false;
+                btn_Sua.Text = "Lưu";
+                MessageBox.Show("Bạn có thể sửa thành tích học viên trong bảng !", "Sửa thành tích", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btn_Huy_In.Text = "Hủy";
+            }
+            else
+            {
+                btn_Sua.Text = "Sửa";
+                btn_Huy_In.Text = "In kết quả";
+                gridColumn6.OptionsColumn.ReadOnly = true;
+                HocVien_TheLuc temp = new HocVien_TheLuc();
+                temp.HocVienID = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
+                HocVienDAO dao = new HocVienDAO();
+                foreach (var item in list_KQTL)
+                {
+                    temp.MonTheLucID = item.MonTheLucID;
+                    if (item.ThanhTich < 0) { MessageBox.Show("Bạn không thể nhập thành tích < 0 !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Hand); continue; }
+                    temp.KetQua = item.ThanhTich;
+                    dao.EditTheLuc(temp);
+                }
+                MessageBox.Show("Cập nhật thành công !", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadDataKQTheLuc();
             }
         }
 
-        private void btn_In_Click(object sender, EventArgs e)
+        private void btn_Huy_In_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Excel |*.xls";
-            saveFileDialog1.Title = "Save an Excel File";
-            saveFileDialog1.ShowDialog();
+            if (btn_Huy_In.Text == "Hủy")
+            {
+                btn_Sua.Text = "Sửa";
+                btn_Huy_In.Text = "In kết quả";
+                gridColumn6.OptionsColumn.ReadOnly = true;
+                LoadDataKQTheLuc();
+            }
+            else
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "Excel |*.xls";
+                saveFileDialog1.Title = "Save an Excel File";
+                saveFileDialog1.ShowDialog();
 
-            string FileName = saveFileDialog1.FileName.ToString();
+                string FileName = saveFileDialog1.FileName.ToString();
+                try
+                {
+                    grcKetQua.ExportToXls(FileName);
+                    MessageBox.Show("Xuất file excel thành công");
+                }
+                catch
+                {
+                    MessageBox.Show("Vui lòng dóng file cần ghi lại để quá trình ghi thành công");
+                }
+            }
+        }
+
+        private void grvKetQua_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
             try
             {
-                grcKetQua.ExportToXls(FileName);
-                MessageBox.Show("Xuất file excel thành công");
+                string kq = "";
+                id_rowchange = Convert.ToInt32(grvKetQua.GetFocusedRowCellValue("MonTheLucID").ToString());
+                double ThanhTich = Convert.ToDouble(grvKetQua.GetFocusedRowCellDisplayText("ThanhTich").ToString());
+                double Dat = Convert.ToDouble(grvKetQua.GetFocusedRowCellValue("Dat").ToString());
+                double Kha = Convert.ToDouble(grvKetQua.GetFocusedRowCellValue("Kha").ToString());
+                double Gioi = Convert.ToDouble(grvKetQua.GetFocusedRowCellValue("Gioi").ToString());
+
+                if (ThanhTich < Dat)
+                    kq = "Không đạt";
+                else if (ThanhTich >= Dat && ThanhTich < Kha)
+                    kq = "Đạt";
+                else if (ThanhTich >= Kha && ThanhTich < Gioi)
+                    kq = "Khá";
+                else
+                    kq = "Giỏi";
+
+                if (e.Column.FieldName == "ThanhTich")
+                {
+                    grvKetQua.SetRowCellValue(e.RowHandle, "KetQua", kq);
+                }
+
+                var item = list_KQTL.Find(x => x.MonTheLucID == id_rowchange);
+                item.ThanhTich = ThanhTich;
+                item.KetQua = kq;
             }
             catch
             {
-                MessageBox.Show("Vui lòng đóng file cần ghi lại để quá trình ghi thành công");
+
             }
         }
     }

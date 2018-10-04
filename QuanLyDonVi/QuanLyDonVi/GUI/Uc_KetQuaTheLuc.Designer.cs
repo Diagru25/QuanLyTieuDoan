@@ -49,9 +49,8 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pn_action = new DevExpress.XtraEditors.PanelControl();
-            this.btn_Luu = new System.Windows.Forms.Button();
+            this.btn_Huy_In = new System.Windows.Forms.Button();
             this.btn_Sua = new System.Windows.Forms.Button();
-            this.btn_In = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -255,6 +254,7 @@
             this.grvKetQua.OptionsFind.ShowClearButton = false;
             this.grvKetQua.OptionsFind.ShowFindButton = false;
             this.grvKetQua.OptionsView.ShowGroupPanel = false;
+            this.grvKetQua.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvKetQua_CellValueChanged);
             // 
             // gridColumn4
             // 
@@ -288,9 +288,8 @@
             // 
             // pn_action
             // 
-            this.pn_action.Controls.Add(this.btn_Luu);
+            this.pn_action.Controls.Add(this.btn_Huy_In);
             this.pn_action.Controls.Add(this.btn_Sua);
-            this.pn_action.Controls.Add(this.btn_In);
             this.pn_action.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pn_action.Enabled = false;
             this.pn_action.Location = new System.Drawing.Point(2, 428);
@@ -298,32 +297,25 @@
             this.pn_action.Size = new System.Drawing.Size(632, 100);
             this.pn_action.TabIndex = 0;
             // 
-            // btn_Luu
+            // btn_Huy_In
             // 
-            this.btn_Luu.Location = new System.Drawing.Point(237, 37);
-            this.btn_Luu.Name = "btn_Luu";
-            this.btn_Luu.Size = new System.Drawing.Size(142, 29);
-            this.btn_Luu.TabIndex = 22;
-            this.btn_Luu.Text = "Lưu";
-            this.btn_Luu.UseVisualStyleBackColor = true;
+            this.btn_Huy_In.Location = new System.Drawing.Point(379, 36);
+            this.btn_Huy_In.Name = "btn_Huy_In";
+            this.btn_Huy_In.Size = new System.Drawing.Size(142, 29);
+            this.btn_Huy_In.TabIndex = 22;
+            this.btn_Huy_In.Text = "In kết quả";
+            this.btn_Huy_In.UseVisualStyleBackColor = true;
+            this.btn_Huy_In.Click += new System.EventHandler(this.btn_Huy_In_Click);
             // 
             // btn_Sua
             // 
-            this.btn_Sua.Location = new System.Drawing.Point(14, 37);
+            this.btn_Sua.Location = new System.Drawing.Point(111, 36);
             this.btn_Sua.Name = "btn_Sua";
             this.btn_Sua.Size = new System.Drawing.Size(142, 29);
             this.btn_Sua.TabIndex = 21;
             this.btn_Sua.Text = "Sửa";
             this.btn_Sua.UseVisualStyleBackColor = true;
-            // 
-            // btn_In
-            // 
-            this.btn_In.Location = new System.Drawing.Point(446, 37);
-            this.btn_In.Name = "btn_In";
-            this.btn_In.Size = new System.Drawing.Size(142, 29);
-            this.btn_In.TabIndex = 19;
-            this.btn_In.Text = "In kết quả";
-            this.btn_In.UseVisualStyleBackColor = true;
+            this.btn_Sua.Click += new System.EventHandler(this.btn_Sua_Click);
             // 
             // Uc_KetQuaTheLuc
             // 
@@ -377,8 +369,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraEditors.PanelControl pn_action;
-        private System.Windows.Forms.Button btn_In;
-        private System.Windows.Forms.Button btn_Luu;
+        private System.Windows.Forms.Button btn_Huy_In;
         private System.Windows.Forms.Button btn_Sua;
     }
 }
