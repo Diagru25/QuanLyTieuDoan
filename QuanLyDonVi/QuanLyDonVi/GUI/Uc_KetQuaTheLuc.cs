@@ -198,14 +198,28 @@ namespace QuanLyDonVi.GUI
                 double Kha = Convert.ToDouble(grvKetQua.GetFocusedRowCellValue("Kha").ToString());
                 double Gioi = Convert.ToDouble(grvKetQua.GetFocusedRowCellValue("Gioi").ToString());
 
-                if (ThanhTich < Dat)
-                    kq = "Không đạt";
-                else if (ThanhTich >= Dat && ThanhTich < Kha)
-                    kq = "Đạt";
-                else if (ThanhTich >= Kha && ThanhTich < Gioi)
-                    kq = "Khá";
-                else
-                    kq = "Giỏi";
+                if(Dat < Kha && Kha < Gioi)
+                {
+                    if (ThanhTich < Dat)
+                        kq = "Không đạt";
+                    else if (ThanhTich >= Dat && ThanhTich < Kha)
+                        kq = "Đạt";
+                    else if (ThanhTich >= Kha && ThanhTich < Gioi)
+                        kq = "Khá";
+                    else
+                        kq = "Giỏi";
+                }
+                else // Dat > Kha > gioi
+                {
+                    if (ThanhTich > Dat)
+                        kq = "Không đạt";
+                    else if (ThanhTich <= Dat && ThanhTich > Kha)
+                        kq = "Đạt";
+                    else if (ThanhTich <= Kha && ThanhTich > Gioi)
+                        kq = "Khá";
+                    else
+                        kq = "Giỏi";
+                }
 
                 if (e.Column.FieldName == "ThanhTich")
                 {

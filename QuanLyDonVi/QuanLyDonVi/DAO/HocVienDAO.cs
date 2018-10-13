@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QuanLyDonVi.Model.EF;
 using QuanLyDonVi.Model.View;
+using System.Windows.Forms;
 
 namespace QuanLyDonVi.DAO
 {
@@ -47,17 +48,17 @@ namespace QuanLyDonVi.DAO
             try
             {
                 db.HocViens.Add(item);
-
+                db.SaveChanges();
                 //Them mon hoc
 
                 List<Lop_MonHoc> monhoc = db.Lop_MonHoc.Where(x => x.LopID == item.LopID).ToList();
                 HocVien_MonHoc temp_mh = new HocVien_MonHoc();
                 temp_mh.HocVienID = item.ID;
                 temp_mh.Diem = 0;
-                foreach(var mh in monhoc)
+                foreach (Lop_MonHoc mh in monhoc)
                 {
-                    temp_mh.MonHocID = mh.MonHocID;
-                    this.Add_HocVien_MonHoc(temp_mh);
+                    temp_mh.MonHocID = mh.MonHocID;                 
+                    new HocVienDAO().Add_HocVien_MonHoc(temp_mh);
                 }
 
                 // Them mon the luc
@@ -69,7 +70,7 @@ namespace QuanLyDonVi.DAO
                 foreach(var mtl in montheluc)
                 {
                     temp_mtl.MonTheLucID = mtl.ID;
-                    this.Add_HocVien_MonTheLuc(temp_mtl);
+                    new HocVienDAO().Add_HocVien_MonTheLuc(temp_mtl);
                 }
 
                 //Them mon cong tac dang
@@ -80,15 +81,17 @@ namespace QuanLyDonVi.DAO
                 temp_mctd.Diem = 0;
                 foreach (var mctd in monctd)
                 {
-                    temp_mctd.Diem = mctd.ID;
-                    this.Add_HocVien_CongTacDang(temp_mctd);
+                    temp_mctd.CongTacDangID = mctd.ID;
+                    new HocVienDAO().Add_HocVien_CongTacDang(temp_mctd);
                 }
 
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch(Exception e)
             {
+                var x = e.ToString();
+                MessageBox.Show(x);         
                 return false;
             }
         }
@@ -275,14 +278,28 @@ namespace QuanLyDonVi.DAO
 
             foreach(var item in data)
             {
-                if (item.ThanhTich < item.Dat)
-                    item.KetQua = "Không đạt";
-                else if (item.ThanhTich >= item.Dat && item.ThanhTich < item.Kha)
-                    item.KetQua = "Đạt";
-                else if (item.ThanhTich >= item.Kha && item.ThanhTich < item.Gioi)
-                    item.KetQua = "Khá";
+                if(item.Dat < item.Kha && item.Kha < item.Gioi)
+                {
+                    if (item.ThanhTich < item.Dat)
+                        item.KetQua = "Không đạt";
+                    else if (item.ThanhTich >= item.Dat && item.ThanhTich < item.Kha)
+                        item.KetQua = "Đạt";
+                    else if (item.ThanhTich >= item.Kha && item.ThanhTich < item.Gioi)
+                        item.KetQua = "Khá";
+                    else
+                        item.KetQua = "Giỏi";
+                }
                 else
-                    item.KetQua = "Giỏi";
+                {
+                    if (item.ThanhTich > item.Dat)
+                        item.KetQua = "Không đạt";
+                    else if (item.ThanhTich <= item.Dat && item.ThanhTich > item.Kha)
+                        item.KetQua = "Đạt";
+                    else if (item.ThanhTich <= item.Kha && item.ThanhTich > item.Gioi)
+                        item.KetQua = "Khá";
+                    else
+                        item.KetQua = "Giỏi";
+                }
             }
             return data;
         }

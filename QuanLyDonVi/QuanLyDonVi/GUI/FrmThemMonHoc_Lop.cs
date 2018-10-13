@@ -88,6 +88,7 @@ namespace QuanLyDonVi.GUI
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            bool check = true;
             Lop_MonHoc _item = new Lop_MonHoc();
             foreach (MonHoc item in li2)
             {
@@ -95,13 +96,20 @@ namespace QuanLyDonVi.GUI
                 _item.MonHocID = item.ID;
                 if(new MonHocDAO().Add_Lop_MonHoc(_item))
                 {
-                    MessageBox.Show("Lưu thành công");
+                    
                 }
                 else
                 {
-                    MessageBox.Show("Xảy ra lỗi");
+                    check = false;
+                    break;
                 }
             }
+            if (check)
+            {
+                MessageBox.Show("Lưu thành công");
+            }
+            else
+                MessageBox.Show("Xảy ra lỗi");
         }
     }
 }
