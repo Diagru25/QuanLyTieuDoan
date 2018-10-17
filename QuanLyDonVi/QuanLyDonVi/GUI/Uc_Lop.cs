@@ -238,24 +238,40 @@ namespace QuanLyDonVi.GUI
 
         private void btn_ThemMon_Click(object sender, EventArgs e)
         {
-            FrmThemMonHoc_Lop frm = new FrmThemMonHoc_Lop(Convert.ToInt32(txbID.Text));
-            frm.ShowDialog();
-            LoadMonHocLop();
+            if (Common.Acc_type == "Admin" || Common.Acc_type == "Root")
+            {
+                FrmThemMonHoc_Lop frm = new FrmThemMonHoc_Lop(Convert.ToInt32(txbID.Text));
+                frm.ShowDialog();
+                LoadMonHocLop();
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+                return;
+            }
         }
 
         private void btn_XoaMon_Click(object sender, EventArgs e)
         {
-            foreach(int i in grvMonHocLop.GetSelectedRows())
+            if (Common.Acc_type == "Admin" || Common.Acc_type == "Root")
             {
-                if(i >= 0)
+                foreach (int i in grvMonHocLop.GetSelectedRows())
                 {
-                    long monhoc_id = Convert.ToInt32(grvMonHocLop.GetRowCellValue(i,"ID"));
+                    if (i >= 0)
+                    {
+                        long monhoc_id = Convert.ToInt32(grvMonHocLop.GetRowCellValue(i, "ID"));
 
-                    new MonHocDAO().Remove_Lop_MonHoc(Convert.ToInt32(txbID.Text), monhoc_id);
+                        new MonHocDAO().Remove_Lop_MonHoc(Convert.ToInt32(txbID.Text), monhoc_id);
+                    }
                 }
-            }
 
-            LoadMonHocLop();
+                LoadMonHocLop();
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+                return;
+            }
         }
         #endregion
 

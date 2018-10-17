@@ -24,7 +24,8 @@ namespace QuanLyDonVi
             Account acc = new Account();
             acc = new AccountDAO().Is_login(txbUsername.Text, txbPass.Text);
             if (acc != null)
-            {    
+            {
+                Common.Acc_type = acc.Type;
                 Form1 frm = new Form1(acc);
                 this.Hide();
                 frm.ShowDialog();
