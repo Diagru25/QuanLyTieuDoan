@@ -34,6 +34,7 @@ namespace QuanLyDonVi.GUI
         {
             txbID.DataBindings.Add("Text", dgrCongTacDang.DataSource, "ID", true, DataSourceUpdateMode.Never);
             txbTen.DataBindings.Add("Text", dgrCongTacDang.DataSource, "Ten", true, DataSourceUpdateMode.Never);
+            txbNam.DataBindings.Add("Text", dgrCongTacDang.DataSource, "Nam", true, DataSourceUpdateMode.Never);
             txbDat.DataBindings.Add("Text", dgrCongTacDang.DataSource, "Dat", true, DataSourceUpdateMode.Never);
             txbKha.DataBindings.Add("Text", dgrCongTacDang.DataSource, "Kha", true, DataSourceUpdateMode.Never);
             txbGioi.DataBindings.Add("Text", dgrCongTacDang.DataSource, "Gioi", true, DataSourceUpdateMode.Never);
@@ -42,6 +43,7 @@ namespace QuanLyDonVi.GUI
         private void LockControl()
         {
             txbID.Enabled = false;
+            txbNam.Enabled = false;
             txbTen.Enabled = false;
             txbDat.Enabled = false;
             txbKha.Enabled = false;
@@ -57,6 +59,7 @@ namespace QuanLyDonVi.GUI
         {
             txbID.Enabled = true;
             txbTen.Enabled = true;
+            txbNam.Enabled = true;
             txbDat.Enabled = true;
             txbKha.Enabled = true;
             txbGioi.Enabled = true;
@@ -67,6 +70,7 @@ namespace QuanLyDonVi.GUI
 
             txbID.Text = "";
             txbTen.Text = "";
+            txbNam.Text = "";
             txbDat.Text = "";
             txbKha.Text = "";
             txbGioi.Text = "";
@@ -76,86 +80,44 @@ namespace QuanLyDonVi.GUI
         #region su kien
         private void btn_Them_Click(object sender, EventArgs e)
         {
-            if (btn_Them.Text == "Thêm")
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                btn_Sua.Enabled = false;
-                btn_Them.Text = "Lưu";
-                btn_Xoa.Text = "Hủy";
-                UnLockControl();
-                Empty();
-            }
-            else
-            {
-                CongTacDang item = new CongTacDang();
-
-                item.Ten = txbTen.Text;
-                item.Dat = Convert.ToDouble(txbDat.Text);
-                item.Kha = Convert.ToDouble(txbKha.Text);
-                item.Gioi = Convert.ToDouble(txbGioi.Text);
-
-                if (new CongTacDangDAO().Add(item))
+                if (btn_Them.Text == "Thêm")
                 {
-                    LoadCongTacDang();
-                    MessageBox.Show("Thêm thành công");
+                    btn_Sua.Enabled = false;
+                    btn_Them.Text = "Lưu";
+                    btn_Xoa.Text = "Hủy";
+                    UnLockControl();
+                    Empty();
                 }
                 else
                 {
-                    MessageBox.Show("Không thành công");
-                }
-                LockControl();
-            }
-        }
+                    CongTacDang item = new CongTacDang();
 
-        private void btn_Sua_Click(object sender, EventArgs e)
-        {
-            if (btn_Sua.Text == "Sửa")
-            {
-                btn_Them.Enabled = false;
-                btn_Sua.Text = "Lưu";
-                btn_Xoa.Text = "Hủy";
-                UnLockControl();
-            }
-            else
-            {
-                CongTacDang item = new CongTacDang();
+                    item.Ten = txbTen.Text;
+                    try
+                    {
+                        item.Nam = Convert.ToInt16(txbNam.Text);
+                        if (item.Nam < 1 || item.Nam > 5)
+                        {
+                            MessageBox.Show("Bạn đã nhập sai năm ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Bạn đã nhập sai năm ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
 
-                item.ID = Convert.ToInt32(txbID.Text);
-                item.Ten = txbTen.Text;
-                item.Dat = Convert.ToDouble(txbDat.Text);
-                item.Kha = Convert.ToDouble(txbKha.Text);
-                item.Gioi = Convert.ToDouble(txbGioi.Text);
+                    }
+                    item.Dat = Convert.ToDouble(txbDat.Text);
+                    item.Kha = Convert.ToDouble(txbKha.Text);
+                    item.Gioi = Convert.ToDouble(txbGioi.Text);
 
-                if (new CongTacDangDAO().Edit(item))
-                {
-                    LoadCongTacDang();
-                    MessageBox.Show("Sửa thành công");
-                }
-                else
-                {
-                    MessageBox.Show("Không thành công");
-                }
-                LockControl();
-            }
-        }
-
-        private void btn_Xoa_Click(object sender, EventArgs e)
-        {
-            if (btn_Xoa.Text == "Hủy")
-            {
-                LoadCongTacDang();
-                LockControl();
-            }
-            else
-            {
-
-                if (MessageBox.Show("Bạn có chắc chắn muốn xóa ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    long id = Convert.ToInt32(txbID.Text);
-
-                    if (new CongTacDangDAO().Remove(id))
+                    if (new CongTacDangDAO().Add(item))
                     {
                         LoadCongTacDang();
-                        MessageBox.Show("Xóa thành công");
+                        MessageBox.Show("Thêm thành công");
                     }
                     else
                     {
@@ -164,6 +126,102 @@ namespace QuanLyDonVi.GUI
                     LockControl();
                 }
             }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+            }
+
+        }
+
+        private void btn_Sua_Click(object sender, EventArgs e)
+        {
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
+            {
+                if (btn_Sua.Text == "Sửa")
+                {
+                    btn_Them.Enabled = false;
+                    btn_Sua.Text = "Lưu";
+                    btn_Xoa.Text = "Hủy";
+                    UnLockControl();
+                }
+                else
+                {
+                    CongTacDang item = new CongTacDang();
+
+                    item.ID = Convert.ToInt32(txbID.Text);
+                    item.Ten = txbTen.Text;
+                    try
+                    {
+                        item.Nam = Convert.ToInt16(txbNam.Text);
+                        if (item.Nam < 1 || item.Nam > 5)
+                        {
+                            MessageBox.Show("Bạn đã nhập sai năm ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Bạn đã nhập sai năm ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+
+                    }
+                    item.Dat = Convert.ToDouble(txbDat.Text);
+                    item.Kha = Convert.ToDouble(txbKha.Text);
+                    item.Gioi = Convert.ToDouble(txbGioi.Text);
+
+                    if (new CongTacDangDAO().Edit(item))
+                    {
+                        LoadCongTacDang();
+                        MessageBox.Show("Sửa thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thành công");
+                    }
+                    LockControl();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+            }
+
+        }
+
+        private void btn_Xoa_Click(object sender, EventArgs e)
+        {
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
+            {
+                if (btn_Xoa.Text == "Hủy")
+                {
+                    LoadCongTacDang();
+                    LockControl();
+                }
+                else
+                {
+
+                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        long id = Convert.ToInt32(txbID.Text);
+
+                        if (new CongTacDangDAO().Remove(id))
+                        {
+                            LoadCongTacDang();
+                            MessageBox.Show("Xóa thành công");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không thành công");
+                        }
+                        LockControl();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+            }
+
         }
 
         private void btn_Thoat_Click(object sender, EventArgs e)

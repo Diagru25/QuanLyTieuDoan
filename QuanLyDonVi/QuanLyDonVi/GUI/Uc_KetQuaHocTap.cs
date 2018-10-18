@@ -116,6 +116,8 @@ namespace QuanLyDonVi.GUI
         private void grvDSHocVien_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             pn_action.Enabled = true;
+            comboBox1.SelectedIndex = -1;
+
         }
 
         void LoadDataDiem()
@@ -132,8 +134,12 @@ namespace QuanLyDonVi.GUI
         {
             try
             {
-                gr_data.Enabled = true;
-                LoadDataDiem();
+                if (comboBox1.SelectedIndex != -1)
+                {
+                    gr_data.Enabled = true;
+                    LoadDataDiem();
+                }
+                else gr_data.Enabled = false;
             }
             catch
             {
@@ -143,30 +149,38 @@ namespace QuanLyDonVi.GUI
 
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-            if(btn_Sua.Text == "Sửa")
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                gridColumn5.OptionsColumn.ReadOnly = false;
-                btn_Sua.Text = "Lưu";
-                MessageBox.Show("Bạn có thể sửa điểm học viên trong bảng !", "Sửa điểm", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btn_Huy_In.Text = "Hủy";
+                if (btn_Sua.Text == "Sửa")
+                {
+                    gridColumn5.OptionsColumn.ReadOnly = false;
+                    btn_Sua.Text = "Lưu";
+                    MessageBox.Show("Bạn có thể sửa điểm học viên trong bảng !", "Sửa điểm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btn_Huy_In.Text = "Hủy";
+                }
+                else
+                {
+                    btn_Sua.Text = "Sửa";
+                    btn_Huy_In.Text = "In kết quả";
+                    gridColumn5.OptionsColumn.ReadOnly = true;
+                    HocVien_MonHoc temp = new HocVien_MonHoc();
+                    temp.HocVienID = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
+                    HocVienDAO dao = new HocVienDAO();
+                    foreach (var item in list_Diem)
+                    {
+                        temp.MonHocID = item.MonHocID;
+                        if (item.KetQua < 0 || item.KetQua > 10) { MessageBox.Show("Bạn không thể nhập điểm < 0 hoặc > 10 !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Hand); continue; }
+                        temp.Diem = item.KetQua;
+                        dao.EditDiem(temp);
+                    }
+                    MessageBox.Show("Cập nhật thành công !", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDataDiem();
+                }
+
             }
             else
             {
-                btn_Sua.Text = "Sửa";
-                btn_Huy_In.Text = "In kết quả";
-                gridColumn5.OptionsColumn.ReadOnly = true;
-                HocVien_MonHoc temp = new HocVien_MonHoc();
-                temp.HocVienID = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
-                HocVienDAO dao = new HocVienDAO();
-                foreach(var item in list_Diem)
-                {
-                    temp.MonHocID = item.MonHocID;
-                    if (item.KetQua < 0 || item.KetQua > 10) { MessageBox.Show("Bạn không thể nhập điểm < 0 hoặc > 10 !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Hand); continue; }
-                    temp.Diem = item.KetQua;
-                    dao.EditDiem(temp);
-                }
-                MessageBox.Show("Cập nhật thành công !", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadDataDiem();
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
             }
 
         }
@@ -180,17 +194,39 @@ namespace QuanLyDonVi.GUI
 
         private void btn_Huy_In_Click(object sender, EventArgs e)
         {
-            if(btn_Huy_In.Text == "Hủy")
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                btn_Sua.Text = "Sửa";
-                btn_Huy_In.Text = "In kết quả";
-                gridColumn5.OptionsColumn.ReadOnly = true;
-                LoadDataDiem();
+                if (btn_Huy_In.Text == "Hủy")
+                {
+                    btn_Sua.Text = "Sửa";
+                    btn_Huy_In.Text = "In kết quả";
+                    gridColumn5.OptionsColumn.ReadOnly = true;
+                    LoadDataDiem();
+                }
+                else
+                {
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.Filter = "Excel |*.xls";
+                    saveFileDialog1.Title = "Save an Excel File";
+                    saveFileDialog1.ShowDialog();
+
+                    string FileName = saveFileDialog1.FileName.ToString();
+                    try
+                    {
+                        grcKetQua.ExportToXls(FileName);
+                        MessageBox.Show("Xuất file excel thành công");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Vui lòng dóng file cần ghi lại để quá trình ghi thành công");
+                    }
+                }
             }
             else
             {
-
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
             }
+
         }
     }
 }

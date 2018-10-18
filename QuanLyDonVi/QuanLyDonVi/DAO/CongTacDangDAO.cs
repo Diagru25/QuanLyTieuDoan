@@ -51,6 +51,7 @@ namespace QuanLyDonVi.DAO
             {
                 CongTacDang temp = db.CongTacDangs.Find(item.ID);
 
+                temp.Nam = item.Nam;
                 temp.Ten = item.Ten;
                 temp.Dat = item.Dat;
                 temp.Kha = item.Kha;

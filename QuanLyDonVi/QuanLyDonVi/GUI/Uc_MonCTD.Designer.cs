@@ -33,6 +33,7 @@
             DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
             DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.label3 = new System.Windows.Forms.Label();
             this.txbGioi = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txbKha = new System.Windows.Forms.TextBox();
@@ -62,6 +63,7 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txbNam = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -81,6 +83,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.txbNam);
+            this.panelControl1.Controls.Add(this.label3);
             this.panelControl1.Controls.Add(this.txbGioi);
             this.panelControl1.Controls.Add(this.label6);
             this.panelControl1.Controls.Add(this.txbKha);
@@ -98,10 +102,20 @@
             this.panelControl1.Size = new System.Drawing.Size(325, 530);
             this.panelControl1.TabIndex = 0;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.label3.Location = new System.Drawing.Point(6, 157);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 18);
+            this.label3.TabIndex = 40;
+            this.label3.Text = "Năm";
+            // 
             // txbGioi
             // 
             this.txbGioi.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txbGioi.Location = new System.Drawing.Point(85, 252);
+            this.txbGioi.Location = new System.Drawing.Point(85, 303);
             this.txbGioi.Name = "txbGioi";
             this.txbGioi.Size = new System.Drawing.Size(225, 25);
             this.txbGioi.TabIndex = 39;
@@ -110,7 +124,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.label6.Location = new System.Drawing.Point(6, 252);
+            this.label6.Location = new System.Drawing.Point(6, 303);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(30, 18);
             this.label6.TabIndex = 38;
@@ -119,7 +133,7 @@
             // txbKha
             // 
             this.txbKha.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txbKha.Location = new System.Drawing.Point(85, 204);
+            this.txbKha.Location = new System.Drawing.Point(85, 255);
             this.txbKha.Name = "txbKha";
             this.txbKha.Size = new System.Drawing.Size(225, 25);
             this.txbKha.TabIndex = 37;
@@ -128,7 +142,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.label5.Location = new System.Drawing.Point(6, 204);
+            this.label5.Location = new System.Drawing.Point(6, 255);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(33, 18);
             this.label5.TabIndex = 36;
@@ -137,7 +151,7 @@
             // txbDat
             // 
             this.txbDat.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.txbDat.Location = new System.Drawing.Point(85, 155);
+            this.txbDat.Location = new System.Drawing.Point(85, 206);
             this.txbDat.Name = "txbDat";
             this.txbDat.Size = new System.Drawing.Size(225, 25);
             this.txbDat.TabIndex = 35;
@@ -146,7 +160,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 11F);
-            this.label4.Location = new System.Drawing.Point(6, 155);
+            this.label4.Location = new System.Drawing.Point(6, 206);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 18);
             this.label4.TabIndex = 34;
@@ -415,6 +429,14 @@
             this.gridColumn3.VisibleIndex = 4;
             this.gridColumn3.Width = 73;
             // 
+            // txbNam
+            // 
+            this.txbNam.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.txbNam.Location = new System.Drawing.Point(85, 157);
+            this.txbNam.Name = "txbNam";
+            this.txbNam.Size = new System.Drawing.Size(225, 25);
+            this.txbNam.TabIndex = 41;
+            // 
             // Uc_MonCTD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,5 +497,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txbDat;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txbNam;
     }
 }

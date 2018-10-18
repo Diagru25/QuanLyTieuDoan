@@ -66,77 +66,85 @@ namespace QuanLyDonVi.GUI
 
         private void btn_Luu_Click(object sender, EventArgs e)
         {
-            if (txt_HoTen.Text == "")
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                MessageBox.Show("Nhập họ và tên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (txt_QueQuan.Text == "")
-            {
-                MessageBox.Show("Nhập quê quán", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (txt_NoiSinh.Text == "")
-            {
-                MessageBox.Show("Nhập nơi sinh", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (txt_NoiO.Text == "")
-            {
-                MessageBox.Show("Nhập chỗ ở hiện nay", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (txt_CapBac.Text == "")
-            {
-                MessageBox.Show("Nhập cấp bậc", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (txt_ChucVu.Text == "")
-            {
-                MessageBox.Show("Nhập chức vụ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            hv.Ten = txt_HoTen.Text;
-            hv.NgaySinh = dt_NgaySinh.Value;
-            hv.QueQuan = txt_QueQuan.Text;
-            hv.NoiSinh = txt_NoiSinh.Text;
-            hv.DiaChi = txt_NoiO.Text;
-            hv.CapBac = txt_CapBac.Text;
-            hv.ChucVu = txt_ChucVu.Text;
-            hv.GioiTinh = rb_Nam.Checked ? true : false;
-            hv.NgayVaoDoan = dt_Doan.Value;
-            hv.NgayVaoDang = dt_Dang.Value;
-            hv.LopID = Convert.ToInt32(cb_Lop.SelectedValue.ToString());
-            hv.LopTruong = cbox_LopTruong.Checked ? true : false;
-            if (id.Equals(0))
-            {
-                
-                var result = new HocVienDAO().Insert(hv);
-                if (result)
+                if (txt_HoTen.Text == "")
                 {
-                    MessageBox.Show("Thêm thành công !", "Thêm học viên", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    MessageBox.Show("Nhập họ và tên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (txt_QueQuan.Text == "")
+                {
+                    MessageBox.Show("Nhập quê quán", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (txt_NoiSinh.Text == "")
+                {
+                    MessageBox.Show("Nhập nơi sinh", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (txt_NoiO.Text == "")
+                {
+                    MessageBox.Show("Nhập chỗ ở hiện nay", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (txt_CapBac.Text == "")
+                {
+                    MessageBox.Show("Nhập cấp bậc", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (txt_ChucVu.Text == "")
+                {
+                    MessageBox.Show("Nhập chức vụ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                hv.Ten = txt_HoTen.Text;
+                hv.NgaySinh = dt_NgaySinh.Value;
+                hv.QueQuan = txt_QueQuan.Text;
+                hv.NoiSinh = txt_NoiSinh.Text;
+                hv.DiaChi = txt_NoiO.Text;
+                hv.CapBac = txt_CapBac.Text;
+                hv.ChucVu = txt_ChucVu.Text;
+                hv.GioiTinh = rb_Nam.Checked ? true : false;
+                hv.NgayVaoDoan = dt_Doan.Value;
+                hv.NgayVaoDang = dt_Dang.Value;
+                hv.LopID = Convert.ToInt32(cb_Lop.SelectedValue.ToString());
+                hv.LopTruong = cbox_LopTruong.Checked ? true : false;
+                if (id.Equals(0))
+                {
+
+                    var result = new HocVienDAO().Insert(hv);
+                    if (result)
+                    {
+                        MessageBox.Show("Thêm thành công !", "Thêm học viên", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi xảy ra ! Vui lòng thử lại !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Có lỗi xảy ra ! Vui lòng thử lại !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    var result = new HocVienDAO().Edit(hv);
+                    if (result)
+                    {
+                        MessageBox.Show("Sửa thành công !", "Sửa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi xảy ra ! Vui lòng thử lại !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
                 }
             }
             else
             {
-                var result = new HocVienDAO().Edit(hv);
-                if (result)
-                {
-                    MessageBox.Show("Sửa thành công !", "Sửa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Có lỗi xảy ra ! Vui lòng thử lại !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
             }
+
         }
 
         private void btn_Thoat_Click(object sender, EventArgs e)

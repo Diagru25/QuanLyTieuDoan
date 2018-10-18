@@ -42,7 +42,7 @@
             this.txbUsername.Name = "txbUsername";
             this.txbUsername.Size = new System.Drawing.Size(259, 25);
             this.txbUsername.TabIndex = 25;
-            this.txbUsername.Text = "diagru";
+            this.txbUsername.Text = "administrator";
             // 
             // label1
             // 

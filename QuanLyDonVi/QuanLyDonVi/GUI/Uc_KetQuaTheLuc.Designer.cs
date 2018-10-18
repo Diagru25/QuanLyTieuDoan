@@ -51,6 +51,10 @@
             this.pn_action = new DevExpress.XtraEditors.PanelControl();
             this.btn_Huy_In = new System.Windows.Forms.Button();
             this.btn_Sua = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -216,9 +220,9 @@
             this.gr_data.Controls.Add(this.grcKetQua);
             this.gr_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gr_data.Enabled = false;
-            this.gr_data.Location = new System.Drawing.Point(2, 2);
+            this.gr_data.Location = new System.Drawing.Point(2, 116);
             this.gr_data.Name = "gr_data";
-            this.gr_data.Size = new System.Drawing.Size(632, 426);
+            this.gr_data.Size = new System.Drawing.Size(632, 412);
             this.gr_data.TabIndex = 3;
             this.gr_data.Text = "Kết quả";
             // 
@@ -229,7 +233,7 @@
             this.grcKetQua.Location = new System.Drawing.Point(2, 20);
             this.grcKetQua.MainView = this.grvKetQua;
             this.grcKetQua.Name = "grcKetQua";
-            this.grcKetQua.Size = new System.Drawing.Size(628, 404);
+            this.grcKetQua.Size = new System.Drawing.Size(628, 390);
             this.grcKetQua.TabIndex = 2;
             this.grcKetQua.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvKetQua});
@@ -288,18 +292,22 @@
             // 
             // pn_action
             // 
+            this.pn_action.Controls.Add(this.comboBox2);
+            this.pn_action.Controls.Add(this.labelControl5);
+            this.pn_action.Controls.Add(this.comboBox1);
+            this.pn_action.Controls.Add(this.labelControl4);
             this.pn_action.Controls.Add(this.btn_Huy_In);
             this.pn_action.Controls.Add(this.btn_Sua);
-            this.pn_action.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pn_action.Dock = System.Windows.Forms.DockStyle.Top;
             this.pn_action.Enabled = false;
-            this.pn_action.Location = new System.Drawing.Point(2, 428);
+            this.pn_action.Location = new System.Drawing.Point(2, 2);
             this.pn_action.Name = "pn_action";
-            this.pn_action.Size = new System.Drawing.Size(632, 100);
+            this.pn_action.Size = new System.Drawing.Size(632, 114);
             this.pn_action.TabIndex = 0;
             // 
             // btn_Huy_In
             // 
-            this.btn_Huy_In.Location = new System.Drawing.Point(379, 36);
+            this.btn_Huy_In.Location = new System.Drawing.Point(410, 67);
             this.btn_Huy_In.Name = "btn_Huy_In";
             this.btn_Huy_In.Size = new System.Drawing.Size(142, 29);
             this.btn_Huy_In.TabIndex = 22;
@@ -309,13 +317,62 @@
             // 
             // btn_Sua
             // 
-            this.btn_Sua.Location = new System.Drawing.Point(111, 36);
+            this.btn_Sua.Location = new System.Drawing.Point(118, 67);
             this.btn_Sua.Name = "btn_Sua";
             this.btn_Sua.Size = new System.Drawing.Size(142, 29);
             this.btn_Sua.TabIndex = 21;
             this.btn_Sua.Text = "Sửa";
             this.btn_Sua.UseVisualStyleBackColor = true;
             this.btn_Sua.Click += new System.EventHandler(this.btn_Sua_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "I",
+            "II",
+            "III",
+            "IV"});
+            this.comboBox1.Location = new System.Drawing.Point(118, 22);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(142, 26);
+            this.comboBox1.TabIndex = 24;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.labelControl4.Location = new System.Drawing.Point(63, 28);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(24, 14);
+            this.labelControl4.TabIndex = 23;
+            this.labelControl4.Text = "Quý";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.comboBox2.Location = new System.Drawing.Point(410, 22);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(142, 26);
+            this.comboBox2.TabIndex = 26;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.labelControl5.Location = new System.Drawing.Point(351, 28);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(26, 14);
+            this.labelControl5.TabIndex = 25;
+            this.labelControl5.Text = "Năm";
             // 
             // Uc_KetQuaTheLuc
             // 
@@ -342,6 +399,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grvKetQua)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pn_action)).EndInit();
             this.pn_action.ResumeLayout(false);
+            this.pn_action.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -371,5 +429,9 @@
         private DevExpress.XtraEditors.PanelControl pn_action;
         private System.Windows.Forms.Button btn_Huy_In;
         private System.Windows.Forms.Button btn_Sua;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
     }
 }

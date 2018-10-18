@@ -49,6 +49,8 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pn_action = new DevExpress.XtraEditors.PanelControl();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.btn_Huy_In = new System.Windows.Forms.Button();
             this.btn_Sua = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -216,7 +218,7 @@
             this.gr_data.Controls.Add(this.grcKetQua);
             this.gr_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gr_data.Enabled = false;
-            this.gr_data.Location = new System.Drawing.Point(2, 2);
+            this.gr_data.Location = new System.Drawing.Point(2, 102);
             this.gr_data.Name = "gr_data";
             this.gr_data.Size = new System.Drawing.Size(632, 426);
             this.gr_data.TabIndex = 3;
@@ -288,18 +290,45 @@
             // 
             // pn_action
             // 
+            this.pn_action.Controls.Add(this.comboBox1);
+            this.pn_action.Controls.Add(this.labelControl4);
             this.pn_action.Controls.Add(this.btn_Huy_In);
             this.pn_action.Controls.Add(this.btn_Sua);
-            this.pn_action.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pn_action.Dock = System.Windows.Forms.DockStyle.Top;
             this.pn_action.Enabled = false;
-            this.pn_action.Location = new System.Drawing.Point(2, 428);
+            this.pn_action.Location = new System.Drawing.Point(2, 2);
             this.pn_action.Name = "pn_action";
             this.pn_action.Size = new System.Drawing.Size(632, 100);
             this.pn_action.TabIndex = 0;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.comboBox1.Location = new System.Drawing.Point(116, 39);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(142, 26);
+            this.comboBox1.TabIndex = 26;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.labelControl4.Location = new System.Drawing.Point(45, 45);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(26, 14);
+            this.labelControl4.TabIndex = 25;
+            this.labelControl4.Text = "Năm";
+            // 
             // btn_Huy_In
             // 
-            this.btn_Huy_In.Location = new System.Drawing.Point(379, 36);
+            this.btn_Huy_In.Location = new System.Drawing.Point(475, 36);
             this.btn_Huy_In.Name = "btn_Huy_In";
             this.btn_Huy_In.Size = new System.Drawing.Size(142, 29);
             this.btn_Huy_In.TabIndex = 24;
@@ -309,7 +338,7 @@
             // 
             // btn_Sua
             // 
-            this.btn_Sua.Location = new System.Drawing.Point(111, 36);
+            this.btn_Sua.Location = new System.Drawing.Point(300, 36);
             this.btn_Sua.Name = "btn_Sua";
             this.btn_Sua.Size = new System.Drawing.Size(142, 29);
             this.btn_Sua.TabIndex = 23;
@@ -342,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grvKetQua)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pn_action)).EndInit();
             this.pn_action.ResumeLayout(false);
+            this.pn_action.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -371,5 +401,7 @@
         private DevExpress.XtraEditors.PanelControl pn_action;
         private System.Windows.Forms.Button btn_Huy_In;
         private System.Windows.Forms.Button btn_Sua;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
     }
 }

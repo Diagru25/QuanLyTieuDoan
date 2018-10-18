@@ -57,7 +57,7 @@ namespace QuanLyDonVi.DAO
                 temp_mh.Diem = 0;
                 foreach (Lop_MonHoc mh in monhoc)
                 {
-                    temp_mh.MonHocID = mh.MonHocID;                 
+                    temp_mh.MonHocID = mh.MonHocID;
                     new HocVienDAO().Add_HocVien_MonHoc(temp_mh);
                 }
 
@@ -67,7 +67,7 @@ namespace QuanLyDonVi.DAO
                 HocVien_TheLuc temp_mtl = new HocVien_TheLuc();
                 temp_mtl.HocVienID = item.ID;
                 temp_mtl.KetQua = 0;
-                foreach(var mtl in montheluc)
+                foreach (var mtl in montheluc)
                 {
                     temp_mtl.MonTheLucID = mtl.ID;
                     new HocVienDAO().Add_HocVien_MonTheLuc(temp_mtl);
@@ -88,10 +88,10 @@ namespace QuanLyDonVi.DAO
                 db.SaveChanges();
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 var x = e.ToString();
-                MessageBox.Show(x);         
+                MessageBox.Show(x);
                 return false;
             }
         }
@@ -132,7 +132,7 @@ namespace QuanLyDonVi.DAO
 
                 List<HocVien_MonHoc> monhoc = db.HocVien_MonHoc.Where(x => x.HocVienID == id).ToList();
 
-                foreach(var item in monhoc)
+                foreach (var item in monhoc)
                 {
                     db.HocVien_MonHoc.Remove(item);
                 }
@@ -189,16 +189,31 @@ namespace QuanLyDonVi.DAO
                 return false;
             }
         }
+        string returnQuy(int quy)
+        {
+            if (quy == 1) return "I";
+            if (quy == 2) return "II";
+            if (quy == 3) return "III";
+            return "IV";
+        }
         public bool Add_HocVien_MonTheLuc(HocVien_TheLuc item)
         {
             try
             {
-                db.HocVien_TheLuc.Add(item);
-                db.SaveChanges();
+                for (int i = 1; i <= 4; i++)
+                {
+                    for (int j = 1; j <= 5; j++)
+                    {
+                        db.HocVien_TheLuc.Add(new HocVien_TheLuc() { HocVienID = item.HocVienID, MonTheLucID = item.MonTheLucID, KetQua = 0,Nam = j,Quy = returnQuy(i) });
+                        db.SaveChanges();
+                    }
+                }
+                
                 return true;
             }
-            catch
+            catch(Exception e)
             {
+                var x = e.ToString();
                 return false;
             }
         }
@@ -260,25 +275,25 @@ namespace QuanLyDonVi.DAO
             }
         }
 
-        public List<KQTheLuc> KetQuaTheLuc(long hocvienid)
+        public List<KQTheLuc> KetQuaTheLuc(long hocvienid, string quy, int nam)
         {
             var data = (from a in db.HocVien_TheLuc
-                       join b in db.MonTheLucs on a.MonTheLucID equals b.ID
-                       where a.HocVienID == hocvienid
-                       select new KQTheLuc()
-                       {
-                           MonTheLucID = b.ID,
-                           MonThi = b.Ten,
-                           ThanhTich = a.KetQua,
-                           KetQua = "",
-                           Dat = b.Dat,
-                           Kha = b.Kha,
-                           Gioi = b.Gioi,
-                       }).ToList();
+                        join b in db.MonTheLucs on a.MonTheLucID equals b.ID
+                        where a.HocVienID == hocvienid && a.Quy == quy && a.Nam == nam
+                        select new KQTheLuc()
+                        {
+                            MonTheLucID = b.ID,
+                            MonThi = b.Ten,
+                            ThanhTich = a.KetQua,
+                            KetQua = "",
+                            Dat = b.Dat,
+                            Kha = b.Kha,
+                            Gioi = b.Gioi,
+                        }).ToList();
 
-            foreach(var item in data)
+            foreach (var item in data)
             {
-                if(item.Dat < item.Kha && item.Kha < item.Gioi)
+                if (item.Dat < item.Kha && item.Kha < item.Gioi)
                 {
                     if (item.ThanhTich < item.Dat)
                         item.KetQua = "Không đạt";
@@ -308,7 +323,7 @@ namespace QuanLyDonVi.DAO
         {
             try
             {
-                var dbEntry = db.HocVien_TheLuc.SingleOrDefault(x => x.HocVienID == item.HocVienID && x.MonTheLucID == item.MonTheLucID);
+                var dbEntry = db.HocVien_TheLuc.SingleOrDefault(x => x.HocVienID == item.HocVienID && x.MonTheLucID == item.MonTheLucID && x.Quy == item.Quy && x.Nam == item.Nam);
                 dbEntry.KetQua = item.KetQua;
                 db.SaveChanges();
                 return true;
@@ -318,11 +333,11 @@ namespace QuanLyDonVi.DAO
                 return false;
             }
         }
-        public List<KQCTD> KetQuaCTD(long hocvienid)
+        public List<KQCTD> KetQuaCTD(long hocvienid, int nam)
         {
             var data = (from a in db.HocVien_CongTacDang
                         join b in db.CongTacDangs on a.CongTacDangID equals b.ID
-                        where a.HocVienID == hocvienid
+                        where a.HocVienID == hocvienid && b.Nam == nam
                         select new KQCTD()
                         {
                             MonCTDID = b.ID,

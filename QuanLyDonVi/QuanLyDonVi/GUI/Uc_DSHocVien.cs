@@ -118,9 +118,17 @@ namespace QuanLyDonVi.GUI
 
         private void btn_Them_Click(object sender, EventArgs e)
         {
-            FrLyLich f = new FrLyLich();
-            f.ShowDialog();
-            ReloadTable();
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
+            {
+                FrLyLich f = new FrLyLich();
+                f.ShowDialog();
+                ReloadTable();
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+            }
+
         }
 
         private void btn_ChiTiet_Click(object sender, EventArgs e)
@@ -132,23 +140,31 @@ namespace QuanLyDonVi.GUI
 
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
-            long id = Convert.ToInt32(grvHocVien.GetFocusedRowCellValue("ID").ToString());
-            if (MessageBox.Show("Bạn muốn xóa học viên " + grvHocVien.GetFocusedRowCellValue("Ten").ToString() + " khỏi CSDL?","Xóa học viên",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                var res = new HocVienDAO().Delete(id);
-                if (res)
+                long id = Convert.ToInt32(grvHocVien.GetFocusedRowCellValue("ID").ToString());
+                if (MessageBox.Show("Bạn muốn xóa học viên " + grvHocVien.GetFocusedRowCellValue("Ten").ToString() + " khỏi CSDL?", "Xóa học viên", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Xóa thành công !", "Xóa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ReloadTable();
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Có lỗi xảy ra ! Vui lòng thử lại !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    ReloadTable();
-                    return;
+                    var res = new HocVienDAO().Delete(id);
+                    if (res)
+                    {
+                        MessageBox.Show("Xóa thành công !", "Xóa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ReloadTable();
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi xảy ra ! Vui lòng thử lại !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        ReloadTable();
+                        return;
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+            }
+
         }
 
         private void grvHocVien_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)

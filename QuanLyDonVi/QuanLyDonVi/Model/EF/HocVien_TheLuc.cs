@@ -22,5 +22,14 @@ namespace QuanLyDonVi.Model.EF
 
         [Column(TypeName = "date")]
         public DateTime? NgayKiemTra { get; set; }
+        [Key]
+        [Column(Order = 2)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [StringLength(50)]
+        public string Quy { get; set; }
+        [Key]
+        [Column(Order = 3)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int? Nam { get; set; }
     }
 }

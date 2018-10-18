@@ -116,78 +116,95 @@ namespace QuanLyDonVi.GUI
         private void grvDSHocVien_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             pn_action.Enabled = true;
-            LoadDataKQCTD();
-            gr_data.Enabled = true;
+            comboBox1.SelectedIndex = -1;
+
         }
         void LoadDataKQCTD()
         {
             long hocvienid = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
+            int nam = Convert.ToInt16(comboBox1.Text);
             list_KQCTD.Clear();
-            list_KQCTD.AddRange(new HocVienDAO().KetQuaCTD(hocvienid));
+            list_KQCTD.AddRange(new HocVienDAO().KetQuaCTD(hocvienid, nam));
             grcKetQua.DataSource = null;
             grcKetQua.DataSource = list_KQCTD;
         }
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-            if (btn_Sua.Text == "Sửa")
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                gridColumn6.OptionsColumn.ReadOnly = false;
-                btn_Sua.Text = "Lưu";
-                MessageBox.Show("Bạn có thể sửa điểm học viên trong bảng !", "Sửa thành tích", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btn_Huy_In.Text = "Hủy";
+                if (btn_Sua.Text == "Sửa")
+                {
+                    gridColumn6.OptionsColumn.ReadOnly = false;
+                    btn_Sua.Text = "Lưu";
+                    MessageBox.Show("Bạn có thể sửa điểm học viên trong bảng !", "Sửa thành tích", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btn_Huy_In.Text = "Hủy";
+                }
+                else
+                {
+                    btn_Sua.Text = "Sửa";
+                    btn_Huy_In.Text = "In kết quả";
+                    gridColumn6.OptionsColumn.ReadOnly = true;
+                    HocVien_CongTacDang temp = new HocVien_CongTacDang();
+                    temp.HocVienID = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
+                    HocVienDAO dao = new HocVienDAO();
+                    foreach (var item in list_KQCTD)
+                    {
+                        temp.CongTacDangID = item.MonCTDID;
+                        if (item.ThanhTich < 0) { MessageBox.Show("Bạn không thể nhập điểm < 0 !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Hand); continue; }
+                        temp.Diem = item.ThanhTich;
+                        dao.EditCTD(temp);
+                    }
+                    MessageBox.Show("Cập nhật thành công !", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDataKQCTD();
+                }
             }
             else
             {
-                btn_Sua.Text = "Sửa";
-                btn_Huy_In.Text = "In kết quả";
-                gridColumn6.OptionsColumn.ReadOnly = true;
-                HocVien_CongTacDang temp = new HocVien_CongTacDang();
-                temp.HocVienID = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
-                HocVienDAO dao = new HocVienDAO();
-                foreach (var item in list_KQCTD)
-                {
-                    temp.CongTacDangID = item.MonCTDID;
-                    if (item.ThanhTich < 0) { MessageBox.Show("Bạn không thể nhập điểm < 0 !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Hand); continue; }
-                    temp.Diem = item.ThanhTich;
-                    dao.EditCTD(temp);
-                }
-                MessageBox.Show("Cập nhật thành công !", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadDataKQCTD();
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
             }
+
         }
 
         private void btn_Huy_In_Click(object sender, EventArgs e)
         {
-            if (btn_Huy_In.Text == "Hủy")
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                btn_Sua.Text = "Sửa";
-                btn_Huy_In.Text = "In kết quả";
-                gridColumn6.OptionsColumn.ReadOnly = true;
-                LoadDataKQCTD();
+                if (btn_Huy_In.Text == "Hủy")
+                {
+                    btn_Sua.Text = "Sửa";
+                    btn_Huy_In.Text = "In kết quả";
+                    gridColumn6.OptionsColumn.ReadOnly = true;
+                    LoadDataKQCTD();
+                }
+                else
+                {
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.Filter = "Excel |*.xls";
+                    saveFileDialog1.Title = "Save an Excel File";
+                    saveFileDialog1.ShowDialog();
+
+                    string FileName = saveFileDialog1.FileName.ToString();
+                    try
+                    {
+                        grcKetQua.ExportToXls(FileName);
+                        MessageBox.Show("Xuất file excel thành công");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Vui lòng dóng file cần ghi lại để quá trình ghi thành công");
+                    }
+                }
             }
             else
             {
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = "Excel |*.xls";
-                saveFileDialog1.Title = "Save an Excel File";
-                saveFileDialog1.ShowDialog();
-
-                string FileName = saveFileDialog1.FileName.ToString();
-                try
-                {
-                    grcKetQua.ExportToXls(FileName);
-                    MessageBox.Show("Xuất file excel thành công");
-                }
-                catch
-                {
-                    MessageBox.Show("Vui lòng dóng file cần ghi lại để quá trình ghi thành công");
-                }
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
             }
+
         }
 
         private void grvKetQua_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            
+
             try
             {
                 string kq = "";
@@ -219,6 +236,16 @@ namespace QuanLyDonVi.GUI
             {
 
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1)
+            {
+                LoadDataKQCTD();
+                gr_data.Enabled = true;
+            }
+            else gr_data.Enabled = false;
         }
     }
 }

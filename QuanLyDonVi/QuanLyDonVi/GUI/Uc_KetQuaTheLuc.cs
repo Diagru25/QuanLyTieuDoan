@@ -116,75 +116,95 @@ namespace QuanLyDonVi.GUI
         private void grvDSHocVien_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             pn_action.Enabled = true;
-            LoadDataKQTheLuc();
-            gr_data.Enabled = true;
+            comboBox2.Enabled = false;
+            comboBox1.SelectedIndex = -1;
+            comboBox2.SelectedIndex = -1;
         }
         void LoadDataKQTheLuc()
         {
             long hocvienid = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
+            string quy = comboBox1.Text;
+            int nam = Convert.ToInt16(comboBox2.Text);
             list_KQTL.Clear();
-            list_KQTL.AddRange(new HocVienDAO().KetQuaTheLuc(hocvienid));
+            list_KQTL.AddRange(new HocVienDAO().KetQuaTheLuc(hocvienid, quy, nam));
             grcKetQua.DataSource = null;
             grcKetQua.DataSource = list_KQTL;
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-            grvKetQua.SetRowCellValue(0, "KetQua", "ABC");
-            if (btn_Sua.Text == "Sửa")
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                gridColumn6.OptionsColumn.ReadOnly = false;
-                btn_Sua.Text = "Lưu";
-                MessageBox.Show("Bạn có thể sửa thành tích học viên trong bảng !", "Sửa thành tích", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                btn_Huy_In.Text = "Hủy";
+                if (btn_Sua.Text == "Sửa")
+                {
+                    gridColumn6.OptionsColumn.ReadOnly = false;
+                    btn_Sua.Text = "Lưu";
+                    MessageBox.Show("Bạn có thể sửa thành tích học viên trong bảng !", "Sửa thành tích", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btn_Huy_In.Text = "Hủy";
+                }
+                else
+                {
+                    btn_Sua.Text = "Sửa";
+                    btn_Huy_In.Text = "In kết quả";
+                    gridColumn6.OptionsColumn.ReadOnly = true;
+                    HocVien_TheLuc temp = new HocVien_TheLuc();
+                    temp.HocVienID = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
+                    temp.Nam = Convert.ToInt16(comboBox2.Text);
+                    temp.Quy = comboBox1.Text;
+                    HocVienDAO dao = new HocVienDAO();
+                    foreach (var item in list_KQTL)
+                    {
+                        temp.MonTheLucID = item.MonTheLucID;
+                        if (item.ThanhTich < 0) { MessageBox.Show("Bạn không thể nhập thành tích < 0 !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Hand); continue; }
+                        temp.KetQua = item.ThanhTich;
+                        dao.EditTheLuc(temp);
+                    }
+                    MessageBox.Show("Cập nhật thành công !", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDataKQTheLuc();
+                }
             }
             else
             {
-                btn_Sua.Text = "Sửa";
-                btn_Huy_In.Text = "In kết quả";
-                gridColumn6.OptionsColumn.ReadOnly = true;
-                HocVien_TheLuc temp = new HocVien_TheLuc();
-                temp.HocVienID = Convert.ToInt32(grvDSHocVien.GetFocusedRowCellValue("ID").ToString());
-                HocVienDAO dao = new HocVienDAO();
-                foreach (var item in list_KQTL)
-                {
-                    temp.MonTheLucID = item.MonTheLucID;
-                    if (item.ThanhTich < 0) { MessageBox.Show("Bạn không thể nhập thành tích < 0 !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Hand); continue; }
-                    temp.KetQua = item.ThanhTich;
-                    dao.EditTheLuc(temp);
-                }
-                MessageBox.Show("Cập nhật thành công !", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadDataKQTheLuc();
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
             }
+
         }
 
         private void btn_Huy_In_Click(object sender, EventArgs e)
         {
-            if (btn_Huy_In.Text == "Hủy")
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                btn_Sua.Text = "Sửa";
-                btn_Huy_In.Text = "In kết quả";
-                gridColumn6.OptionsColumn.ReadOnly = true;
-                LoadDataKQTheLuc();
+                if (btn_Huy_In.Text == "Hủy")
+                {
+                    btn_Sua.Text = "Sửa";
+                    btn_Huy_In.Text = "In kết quả";
+                    gridColumn6.OptionsColumn.ReadOnly = true;
+                    LoadDataKQTheLuc();
+                }
+                else
+                {
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.Filter = "Excel |*.xls";
+                    saveFileDialog1.Title = "Save an Excel File";
+                    saveFileDialog1.ShowDialog();
+
+                    string FileName = saveFileDialog1.FileName.ToString();
+                    try
+                    {
+                        grcKetQua.ExportToXls(FileName);
+                        MessageBox.Show("Xuất file excel thành công");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Vui lòng dóng file cần ghi lại để quá trình ghi thành công");
+                    }
+                }
             }
             else
             {
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = "Excel |*.xls";
-                saveFileDialog1.Title = "Save an Excel File";
-                saveFileDialog1.ShowDialog();
-
-                string FileName = saveFileDialog1.FileName.ToString();
-                try
-                {
-                    grcKetQua.ExportToXls(FileName);
-                    MessageBox.Show("Xuất file excel thành công");
-                }
-                catch
-                {
-                    MessageBox.Show("Vui lòng dóng file cần ghi lại để quá trình ghi thành công");
-                }
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
             }
+
         }
 
         private void grvKetQua_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -198,7 +218,7 @@ namespace QuanLyDonVi.GUI
                 double Kha = Convert.ToDouble(grvKetQua.GetFocusedRowCellValue("Kha").ToString());
                 double Gioi = Convert.ToDouble(grvKetQua.GetFocusedRowCellValue("Gioi").ToString());
 
-                if(Dat < Kha && Kha < Gioi)
+                if (Dat < Kha && Kha < Gioi)
                 {
                     if (ThanhTich < Dat)
                         kq = "Không đạt";
@@ -234,6 +254,25 @@ namespace QuanLyDonVi.GUI
             {
 
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == -1)
+            {
+                comboBox2.Enabled = false;
+            }
+            else comboBox2.Enabled = true;
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1)
+            {
+                LoadDataKQTheLuc();
+                gr_data.Enabled = true;
+            }
+            else gr_data.Enabled = false;
         }
     }
 }

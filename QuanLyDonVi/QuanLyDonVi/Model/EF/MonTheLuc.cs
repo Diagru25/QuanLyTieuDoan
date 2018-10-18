@@ -22,5 +22,6 @@ namespace QuanLyDonVi.Model.EF
         public double? Kha { get; set; }
 
         public double? Gioi { get; set; }
+
     }
 }

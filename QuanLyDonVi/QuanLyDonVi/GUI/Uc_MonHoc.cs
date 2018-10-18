@@ -70,84 +70,28 @@ namespace QuanLyDonVi.GUI
         #region su kien
         private void btn_Them_Click(object sender, EventArgs e)
         {
-            if (btn_Them.Text == "Thêm")
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                btn_Sua.Enabled = false;
-                btn_Them.Text = "Lưu";
-                btn_Xoa.Text = "Hủy";
-                UnLockControl();
-                Empty();
-            }
-            else
-            {
-                MonHoc item = new MonHoc();
-
-                item.Ten = txbTen.Text;
-                item.KyHoc = Convert.ToInt32(cboHocKy.Text);
-                item.SoTin = Convert.ToInt32(txbSoTin.Text);
-
-                if (new MonHocDAO().Add(item))
+                if (btn_Them.Text == "Thêm")
                 {
-                    LoadMonHoc();
-                    MessageBox.Show("Thêm thành công");
+                    btn_Sua.Enabled = false;
+                    btn_Them.Text = "Lưu";
+                    btn_Xoa.Text = "Hủy";
+                    UnLockControl();
+                    Empty();
                 }
                 else
                 {
-                    MessageBox.Show("Không thành công");
-                }
-                LockControl();
-            }
-        }
+                    MonHoc item = new MonHoc();
 
-        private void btn_Sua_Click(object sender, EventArgs e)
-        {
-            if (btn_Sua.Text == "Sửa")
-            {
-                btn_Them.Enabled = false;
-                btn_Sua.Text = "Lưu";
-                btn_Xoa.Text = "Hủy";
-                UnLockControl();
-            }
-            else
-            {
-                MonHoc item = new MonHoc();
+                    item.Ten = txbTen.Text;
+                    item.KyHoc = Convert.ToInt32(cboHocKy.Text);
+                    item.SoTin = Convert.ToInt32(txbSoTin.Text);
 
-                item.ID = Convert.ToInt32(txbID.Text);
-                item.Ten = txbTen.Text;
-                item.KyHoc = Convert.ToInt32(cboHocKy.Text);
-                item.SoTin = Convert.ToInt32(txbSoTin.Text);
-
-                if (new MonHocDAO().Edit(item))
-                {
-                    LoadMonHoc();
-                    MessageBox.Show("Sửa thành công");
-                }
-                else
-                {
-                    MessageBox.Show("Không thành công");
-                }
-                LockControl();
-            }
-        }
-
-        private void btn_Xoa_Click(object sender, EventArgs e)
-        {
-            if (btn_Xoa.Text == "Hủy")
-            {
-                LoadMonHoc();
-                LockControl();
-            }
-            else
-            {
-
-                if (MessageBox.Show("Bạn có chắc chắn muốn xóa ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    long id = Convert.ToInt32(txbID.Text);
-
-                    if (new MonHocDAO().Remove(id))
+                    if (new MonHocDAO().Add(item))
                     {
                         LoadMonHoc();
-                        MessageBox.Show("Xóa thành công");
+                        MessageBox.Show("Thêm thành công");
                     }
                     else
                     {
@@ -156,6 +100,86 @@ namespace QuanLyDonVi.GUI
                     LockControl();
                 }
             }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+            }
+
+        }
+
+        private void btn_Sua_Click(object sender, EventArgs e)
+        {
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
+            {
+                if (btn_Sua.Text == "Sửa")
+                {
+                    btn_Them.Enabled = false;
+                    btn_Sua.Text = "Lưu";
+                    btn_Xoa.Text = "Hủy";
+                    UnLockControl();
+                }
+                else
+                {
+                    MonHoc item = new MonHoc();
+
+                    item.ID = Convert.ToInt32(txbID.Text);
+                    item.Ten = txbTen.Text;
+                    item.KyHoc = Convert.ToInt32(cboHocKy.Text);
+                    item.SoTin = Convert.ToInt32(txbSoTin.Text);
+
+                    if (new MonHocDAO().Edit(item))
+                    {
+                        LoadMonHoc();
+                        MessageBox.Show("Sửa thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thành công");
+                    }
+                    LockControl();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+            }
+
+        }
+
+        private void btn_Xoa_Click(object sender, EventArgs e)
+        {
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
+            {
+                if (btn_Xoa.Text == "Hủy")
+                {
+                    LoadMonHoc();
+                    LockControl();
+                }
+                else
+                {
+
+                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        long id = Convert.ToInt32(txbID.Text);
+
+                        if (new MonHocDAO().Remove(id))
+                        {
+                            LoadMonHoc();
+                            MessageBox.Show("Xóa thành công");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không thành công");
+                        }
+                        LockControl();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+            }
+
         }
 
         private void btn_Thoat_Click(object sender, EventArgs e)

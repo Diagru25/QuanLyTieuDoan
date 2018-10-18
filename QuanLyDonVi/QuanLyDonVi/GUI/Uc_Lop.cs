@@ -112,85 +112,68 @@ namespace QuanLyDonVi.GUI
 
         private void btn_Them_Click(object sender, EventArgs e)
         {
-            if (btn_Them.Text == "Thêm")
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                btn_Sua.Enabled = false;
-                btn_Them.Text = "Lưu";
-                btn_Xoa.Text = "Hủy";
-                UnLockControl();
-                Empty();
-            }
-            else
-            {
-                Lop item = new Lop();
-
-                item.Ten = txbTen.Text;
-                item.GhiChu = txbGhiChu.Text;
-                item.DaiDoiID = Convert.ToInt32(cboDaiDoi.SelectedValue);
-
-                if (new LopDAO().Add(item))
+                if (btn_Them.Text == "Thêm")
                 {
-                    LoadLop();
-                    MessageBox.Show("Thêm thành công");
+                    btn_Sua.Enabled = false;
+                    btn_Them.Text = "Lưu";
+                    btn_Xoa.Text = "Hủy";
+                    UnLockControl();
+                    Empty();
                 }
                 else
                 {
-                    MessageBox.Show("Không thành công");
+                    Lop item = new Lop();
+
+                    item.Ten = txbTen.Text;
+                    item.GhiChu = txbGhiChu.Text;
+                    item.DaiDoiID = Convert.ToInt32(cboDaiDoi.SelectedValue);
+
+                    if (new LopDAO().Add(item))
+                    {
+                        LoadLop();
+                        MessageBox.Show("Thêm thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thành công");
+                    }
+                    LockControl();
+                    LoadcboDaiDoi();
                 }
-                LockControl();
-                LoadcboDaiDoi();
             }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+            }
+
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-            if (btn_Sua.Text == "Sửa")
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
             {
-                btn_Them.Enabled = false;
-                btn_Sua.Text = "Lưu";
-                btn_Xoa.Text = "Hủy";
-                UnLockControl();
-            }
-            else
-            {
-                Lop item = new Lop();
-
-                item.ID = Convert.ToInt32(txbID.Text);
-                item.Ten = txbTen.Text;
-                item.GhiChu = txbGhiChu.Text;
-                item.DaiDoiID = Convert.ToInt32(cboDaiDoi.SelectedValue);
-
-                if (new LopDAO().Edit(item))
+                if (btn_Sua.Text == "Sửa")
                 {
-                    LoadLop();
-                    MessageBox.Show("Sửa thành công");
+                    btn_Them.Enabled = false;
+                    btn_Sua.Text = "Lưu";
+                    btn_Xoa.Text = "Hủy";
+                    UnLockControl();
                 }
                 else
                 {
-                    MessageBox.Show("Không thành công");
-                }
-                LockControl();
-            }
-        }
+                    Lop item = new Lop();
 
-        private void btn_Xoa_Click(object sender, EventArgs e)
-        {
-            if (btn_Xoa.Text == "Hủy")
-            {
-                LoadLop();
-                LockControl();
-            }
-            else
-            {
+                    item.ID = Convert.ToInt32(txbID.Text);
+                    item.Ten = txbTen.Text;
+                    item.GhiChu = txbGhiChu.Text;
+                    item.DaiDoiID = Convert.ToInt32(cboDaiDoi.SelectedValue);
 
-                if (MessageBox.Show("Bạn có chắc chắn muốn xóa ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    long id = Convert.ToInt32(txbID.Text);
-
-                    if (new LopDAO().Remove(id))
+                    if (new LopDAO().Edit(item))
                     {
                         LoadLop();
-                        MessageBox.Show("Xóa thành công");
+                        MessageBox.Show("Sửa thành công");
                     }
                     else
                     {
@@ -199,6 +182,47 @@ namespace QuanLyDonVi.GUI
                     LockControl();
                 }
             }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+            }
+
+        }
+
+        private void btn_Xoa_Click(object sender, EventArgs e)
+        {
+            if (Common.Acc_type == "Root" || Common.Acc_type == "Admin")
+            {
+                if (btn_Xoa.Text == "Hủy")
+                {
+                    LoadLop();
+                    LockControl();
+                }
+                else
+                {
+
+                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        long id = Convert.ToInt32(txbID.Text);
+
+                        if (new LopDAO().Remove(id))
+                        {
+                            LoadLop();
+                            MessageBox.Show("Xóa thành công");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không thành công");
+                        }
+                        LockControl();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền thực hiện tác vụ này");
+            }
+
         }
 
         private void btn_Thoat_Click(object sender, EventArgs e)
